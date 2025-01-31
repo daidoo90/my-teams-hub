@@ -1,0 +1,20 @@
+services:
+  myteamshub.organization.api:
+    container_name: myteamshub.organization.api
+    image: ${DOCKER_REGISTRY-}myteamshuborganizationapi
+    build:
+      context: .
+      dockerfile: src/MyTeamsHub.Organization.API/Dockerfile
+    restart: always
+    depends_on: 
+        - myteamshub.db
+
+  myteamshub.db:
+    container_name: myteamshub.db  
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong!Password123"
+      MSSQL_PID: "Express"
