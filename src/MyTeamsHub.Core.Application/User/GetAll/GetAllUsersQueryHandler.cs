@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyTeamsHub.Domain.Entities.Users;
+
+using MyTeamsHub.Core.Domain.Users;
 using MyTeamsHub.Domain.Services.Common;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Users;
@@ -31,7 +32,7 @@ public class GetAllUsersQueryHandler(IEfRepository<UserEntity> users) : IQueryHa
                 CreationDate = u.CreatedOn,
                 Teams = u.TeamMembers
                          .Where(tm => !tm.Team.IsDeleted)
-                         .Select(tm => new Entities.Users.Team
+                         .Select(tm => new Core.Domain.Users.Team
                          {
                              TeamId = tm.TeamId,
                              Name = tm.Team.Name

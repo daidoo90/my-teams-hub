@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Domain.Entities.Auth;
+﻿namespace MyTeamsHub.Core.Domain.Auth;
 
 public record UserToken
 {

@@ -1,5 +1,5 @@
 ﻿//using Microsoft.EntityFrameworkCore;
-//using MyTeamsHub.Domain.Entities.Users;
+//using MyTeamsHub.Core.Domain.Users;
 //using MyTeamsHub.Domain.Services.Common;
 //using MyTeamsHub.Domain.Services.Organizations;
 //using MyTeamsHub.Persistence.Core.Repository;

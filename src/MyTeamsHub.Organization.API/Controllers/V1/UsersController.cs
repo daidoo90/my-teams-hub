@@ -1,13 +1,15 @@
-﻿using MediatR;
+﻿using System.Net;
+
+using MediatR;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using MyTeamsHub.APIs.Core.Results;
 using MyTeamsHub.APIs.Core.Results.Base;
 using MyTeamsHub.APIs.Core.Services;
-using MyTeamsHub.Domain.Entities.Users;
-using MyTeamsHub.Domain.Services.Common;
+using MyTeamsHub.Core.Domain.Users;
 using MyTeamsHub.Domain.Services.Organization.GetAll;
-using MyTeamsHub.Domain.Services.Organizations;
 using MyTeamsHub.Domain.Services.User.Create;
 using MyTeamsHub.Domain.Services.User.GetAll;
 using MyTeamsHub.Domain.Services.User.GetById;
@@ -15,8 +17,8 @@ using MyTeamsHub.Domain.Services.User.Update;
 using MyTeamsHub.Organization.API.Extensions;
 using MyTeamsHub.Organization.API.Models.V1.Users;
 using MyTeamsHub.Persistence.Models.Types;
+
 using Swashbuckle.AspNetCore.Annotations;
-using System.Net;
 
 namespace MyTeamsHub.Organization.API.Controllers.V1;
 
@@ -69,7 +71,7 @@ public class UsersController : BaseApiController
     [SwaggerResponse((int)HttpStatusCode.OK, "Get current user metadata", typeof(ApiDataResult<User>))]
     public async Task<IActionResult> GetMyProfileAsync(CancellationToken cancellationToken)
     {
-        var query  = new GetUserByIdQuery(_currentUserProvider.CurrentUserId);
+        var query = new GetUserByIdQuery(_currentUserProvider.CurrentUserId);
         var serviceDataResult = await _mediator.Send(query, cancellationToken);
 
         return serviceDataResult.ToActionResult();

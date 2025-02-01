@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Domain.Entities.Users;
+﻿namespace MyTeamsHub.Core.Domain.Users;
 
 public class NewUser
 {

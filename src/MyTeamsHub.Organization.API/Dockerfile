@@ -14,7 +14,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/MyTeamsHub.Organization.API/MyTeamsHub.Organization.API.csproj", "src/MyTeamsHub.Organization.API/"]
 COPY ["src/MyTeamsHub.APIs.Core/MyTeamsHub.APIs.Core.csproj", "src/MyTeamsHub.APIs.Core/"]
-COPY ["src/MyTeamsHub.Domain.Entities/MyTeamsHub.Domain.Entities.csproj", "src/MyTeamsHub.Domain.Entities/"]
+COPY ["src/MyTeamsHub.Domain.Entities/MyTeamsHub.Core.Domain.csproj", "src/MyTeamsHub.Domain.Entities/"]
 COPY ["src/MyTeamsHub.Domain.Services/MyTeamsHub.Domain.Services.csproj", "src/MyTeamsHub.Domain.Services/"]
 COPY ["src/MyTeamsHub.Persistence.Core/MyTeamsHub.Persistence.Core.csproj", "src/MyTeamsHub.Persistence.Core/"]
 COPY ["src/MyTeamsHub.Persistence.Models/MyTeamsHub.Persistence.Models.csproj", "src/MyTeamsHub.Persistence.Models/"]

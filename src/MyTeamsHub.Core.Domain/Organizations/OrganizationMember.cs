@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Domain.Entities.Organizations;
+﻿namespace MyTeamsHub.Core.Domain.Organizations;
 
 public class OrganizationMember
 {

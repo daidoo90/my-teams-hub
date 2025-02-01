@@ -4,19 +4,19 @@ using MyTeamsHub.Persistence.Models.Users;
 
 namespace MyTeamsHub.Domain.Services.User.GetById;
 
-public sealed record GetUserByIdQuery(Guid UserId) : IQuery<Entities.Users.User>;
+public sealed record GetUserByIdQuery(Guid UserId) : IQuery<Core.Domain.Users.User>;
 
-public class GetUserByIdQueryHandler(IEfRepository<UserEntity> users) : IQueryHandler<GetUserByIdQuery, Entities.Users.User>
+public class GetUserByIdQueryHandler(IEfRepository<UserEntity> users) : IQueryHandler<GetUserByIdQuery, Core.Domain.Users.User>
 {
     private readonly IEfRepository<UserEntity> _users = users;
 
-    public async Task<ServiceDataResult<Entities.Users.User>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceDataResult<Core.Domain.Users.User>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
         var user = await _users.FirstOrDefaultAsync(u => u.UserId == request.UserId, cancellationToken);
         if (user == null)
-            return ServiceDataResult<Entities.Users.User>.WithError(ErrorCodes.InvalidUser);
+            return ServiceDataResult<Core.Domain.Users.User>.WithError(ErrorCodes.InvalidUser);
 
-        return ServiceDataResult<Entities.Users.User>.WithData(new Entities.Users.User
+        return ServiceDataResult<Core.Domain.Users.User>.WithData(new Core.Domain.Users.User
         {
             FirstName = user.FirstName,
             LastName = user.LastName,

@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" >
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyTeamsHub.Domain.Services\MyTeamsHub.Domain.Services.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence.Core\MyTeamsHub.Persistence.Core.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence.Models\MyTeamsHub.Persistence.Models.csproj" />
   </ItemGroup>

@@ -8,7 +8,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyTeamsHub.Domain.Entities\MyTeamsHub.Domain.Entities.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Core.Domain\MyTeamsHub.Core.Domain.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Domain.Entities\MyTeamsHub.Core.Domain.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence.Core\MyTeamsHub.Persistence.Core.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence.Models\MyTeamsHub.Persistence.Models.csproj" />
   </ItemGroup>

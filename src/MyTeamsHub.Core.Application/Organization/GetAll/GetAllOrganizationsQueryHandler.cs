@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using MyTeamsHub.Domain.Entities.Organizations;
+using MyTeamsHub.Core.Domain.Organizations;
 using MyTeamsHub.Domain.Services.Common;
 using MyTeamsHub.Domain.Services.Organizations;
 

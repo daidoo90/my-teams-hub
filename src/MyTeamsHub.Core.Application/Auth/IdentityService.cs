@@ -1,20 +1,22 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using MyTeamsHub.Domain.Entities.Auth;
-using MyTeamsHub.Domain.Services.Common;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
+using Microsoft.IdentityModel.Tokens;
+
+using MyTeamsHub.Core.Domain.Auth;
+using MyTeamsHub.Domain.Services.Common;
 
 namespace MyTeamsHub.Domain.Services.Auth;
 
 public interface IIdentityService
 {
-    ServiceDataResult<UserToken> GetToken(Entities.Users.User user);
+    ServiceDataResult<UserToken> GetToken(Core.Domain.Users.User user);
 }
 
 public class IdentityService : IIdentityService
 {
-    public ServiceDataResult<UserToken> GetToken(Entities.Users.User user)
+    public ServiceDataResult<UserToken> GetToken(Core.Domain.Users.User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
 
