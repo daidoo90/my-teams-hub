@@ -1,6 +1,6 @@
 ﻿namespace MyTeamsHub.Organization.API.Models.V1.Users;
 
-public record UserSignupRequestDto
+public sealed record UserSignupRequestDto
 {
     public string FirstName { get; init; }
 

@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using MyTeamsHub.APIs.Core.Results;
 using MyTeamsHub.APIs.Core.Services;
-using MyTeamsHub.Domain.Services.Common;
-using MyTeamsHub.Domain.Services.Organizations;
+using MyTeamsHub.Domain.Services.Organization.Create;
+using MyTeamsHub.Domain.Services.Organization.Delete;
+using MyTeamsHub.Domain.Services.Organization.GetAll;
+using MyTeamsHub.Domain.Services.Team.Delete;
+using MyTeamsHub.Domain.Services.Team.GetAll;
+using MyTeamsHub.Domain.Services.Team.GetById;
+using MyTeamsHub.Domain.Services.Team.Update;
 using MyTeamsHub.Organization.API.Extensions;
 using MyTeamsHub.Organization.API.Models.V1.Organizations;
+using MyTeamsHub.Organization.API.Models.V1.Teams;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 
@@ -20,21 +25,18 @@ namespace MyTeamsHub.Organization.API.Controllers.V1;
 [ApiController]
 public class OrganizationsController : ControllerBase
 {
-    private readonly IOrganizationService _organizationService;
-    private readonly ITeamService _teamService;
     private readonly ICurrentUserProvider _currentUserProvider;
+    private readonly IMediator _mediator;
 
     /// <summary>
     /// Constructor
     /// </summary>
     public OrganizationsController(
-        IOrganizationService organizationService,
-        ITeamService teamService,
-        ICurrentUserProvider currentUserProvider)
+        ICurrentUserProvider currentUserProvider,
+        IMediator mediator)
     {
-        _organizationService = organizationService;
-        _teamService = teamService;
         _currentUserProvider = currentUserProvider;
+        _mediator = mediator;
     }
 
     /// <summary>
@@ -47,7 +49,8 @@ public class OrganizationsController : ControllerBase
     [SwaggerResponse((int)HttpStatusCode.OK, "Create organization", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<Guid>))]
     public async Task<IActionResult> CreateOrganizationAsync([FromBody] NewOrganizationRequestDto newOrganizationRequest, CancellationToken cancellationToken)
     {
-        var serviceResult = await _organizationService.CreateAsync(newOrganizationRequest.Name, newOrganizationRequest.Description, _currentUserProvider.CurrentUserId, cancellationToken);
+        var command = new CreateOrganizationCommand(newOrganizationRequest.Name, newOrganizationRequest.Description, _currentUserProvider.CurrentUserId);
+        var serviceResult = await _mediator.Send(command, cancellationToken);
 
         return serviceResult.ToActionResult();
     }
@@ -61,18 +64,14 @@ public class OrganizationsController : ControllerBase
     [SwaggerResponse((int)HttpStatusCode.OK, "Get organization", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<GetUserOrganizationResponseDto>))]
     public async Task<ActionResult> GetOrganizationsAsync(CancellationToken cancellationToken)
     {
-        var serviceDataResult = await _organizationService.GetAllAsync(_currentUserProvider.CurrentUserId, cancellationToken);
+        var query = new GetAllOrganizationsQuery(_currentUserProvider.CurrentUserId);
+        var serviceDataResult = await _mediator.Send(query, cancellationToken);
         if (serviceDataResult.HasFailed)
         {
             return ApiBadRequest.WithErrorCode(serviceDataResult.ErrorCode);
         }
 
-        return ApiOk.WithData(serviceDataResult.Data.Select(ou => new GetUserOrganizationResponseDto
-        {
-            OrganizationId = ou.OrganizationId,
-            OrganizationName = ou.OrganizationName,
-            Role = ou.Role
-        }));
+        return ApiOk.WithData(serviceDataResult.Data.Select(ou => new GetUserOrganizationResponseDto(ou.OrganizationId, ou.OrganizationName, ou.Role)));
     }
 
     /// <summary>
@@ -84,18 +83,10 @@ public class OrganizationsController : ControllerBase
     [Route("{organizationId}")]
     public async Task<IActionResult> DeleteOrganizationAsync(Guid organizationId, CancellationToken cancellationToken)
     {
-        var serviceDataResult = await _organizationService.GetAllAsync(_currentUserProvider.CurrentUserId, cancellationToken);
-        if (serviceDataResult.HasFailed)
-        {
-            return ApiBadRequest.WithErrorCode(serviceDataResult.ErrorCode);
-        }
+        var command = new DeleteOrganizationCommand(organizationId);
 
-        if (serviceDataResult.Data?.All(o => o.OrganizationId != organizationId) ?? true)
-        {
-            return ApiBadRequest.WithErrorCode(Domain.Services.Common.ErrorCodes.InvalidOrganization);
-        }
-
-        var deletionResult = await _organizationService.DeleteAsync(organizationId, cancellationToken);
+        // todo: check if user has access to this organization?
+        var deletionResult = await _mediator.Send(command, cancellationToken);
         return deletionResult.ToActionResult();
     }
 
@@ -110,8 +101,9 @@ public class OrganizationsController : ControllerBase
     [SwaggerResponse((int)HttpStatusCode.OK, "Create new team", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<Guid>))]
     public async Task<IActionResult> CreateTeamAsync([FromRoute] Guid organizationId, [FromBody] NewTeamRequestDto newTeamRequest, CancellationToken cancellationToken)
     {
-        var serviceResult = await _teamService.CreateAsync(organizationId, newTeamRequest.Name, newTeamRequest.Description, cancellationToken);
+        var command = new CreateOrganizationCommand(newTeamRequest.Name, newTeamRequest.Description, _currentUserProvider.CurrentUserId);
 
+        var serviceResult = await _mediator.Send(command, cancellationToken);
         return serviceResult.ToActionResult();
     }
 
@@ -130,7 +122,8 @@ public class OrganizationsController : ControllerBase
     {
         pageNumber = pageNumber ?? 1;
         pageSize = pageSize ?? 10;
-        var serviceResult = await _teamService.GetAllAsync(Guid.Parse(organizationId), pageNumber.Value, pageSize.Value, cancellationToken);
+        var query = new GetAllTeamsQuery(Guid.Parse(organizationId), pageNumber.Value, pageSize.Value);
+        var serviceResult = await _mediator.Send(query, cancellationToken);
         if (serviceResult.HasFailed)
         {
             return ApiBadRequest.WithErrorCode(serviceResult.ErrorCode);
@@ -171,7 +164,8 @@ public class OrganizationsController : ControllerBase
         var members = requestDto.TeamMembers
             .Select(t => (t.TeamMemberId, t.Email, t.IsLead));
 
-        var serviceResult = await _teamService.UpdateAsync(organizationId, teamId, requestDto.Name, requestDto.Description, members, cancellationToken);
+        var command = new UpdateTeamCommand(requestDto.Name, requestDto.Description, organizationId, teamId, members);
+        var serviceResult = await _mediator.Send(command, cancellationToken);
 
         return serviceResult.ToActionResult();
     }
@@ -186,18 +180,10 @@ public class OrganizationsController : ControllerBase
     [Route("{organizationId}/teams/{teamId}")]
     public async Task<IActionResult> DeleteTeamAsync([FromRoute] Guid organizationId, [FromRoute] Guid teamId, CancellationToken cancellationToken)
     {
-        var allTeamsResult = await _teamService.GetAllAsync(organizationId, 1, Int32.MaxValue, cancellationToken);
-        if (allTeamsResult.HasFailed)
-        {
-            return ApiBadRequest.WithErrorCode(allTeamsResult.ErrorCode);
-        }
+        // TODO: Validate that user has access to this team
 
-        if (!allTeamsResult.Data.Item1.Any(t => t.TeamId == teamId))
-        {
-            return ApiBadRequest.WithErrorCode(Domain.Services.Common.ErrorCodes.InvalidTeamId);
-        }
-
-        var deletionResult = await _teamService.DeleteAsync(teamId, cancellationToken);
+        var command = new DeleteTeamCommand(teamId);
+        var deletionResult = await _mediator.Send(command, cancellationToken);
 
         return deletionResult.ToActionResult();
     }
@@ -215,7 +201,8 @@ public class OrganizationsController : ControllerBase
 
     public async Task<IActionResult> GetTeamsAsync([FromRoute] string organizationId, [FromRoute] string teamId, CancellationToken cancellationToken)
     {
-        var serviceResult = await _teamService.GetByIdAsync(Guid.Parse(organizationId), Guid.Parse(teamId), cancellationToken);
+        var query = new GetTeamByIdQuery(Guid.Parse(organizationId), Guid.Parse(teamId));
+        var serviceResult = await _mediator.Send(query, cancellationToken);
         if (serviceResult.HasFailed)
         {
             return ApiBadRequest.WithErrorCode(serviceResult.ErrorCode);

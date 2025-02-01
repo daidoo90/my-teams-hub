@@ -1,6 +1,7 @@
 using MyTeamsHub.IntegrationTests.Core;
 using MyTeamsHub.IntegrationTests.Core.Extensions;
 using MyTeamsHub.Organization.API.Models.V1.Organizations;
+using MyTeamsHub.Organization.API.Models.V1.Teams;
 using System.Net;
 
 namespace MyTeamsHub.IntegrationTests

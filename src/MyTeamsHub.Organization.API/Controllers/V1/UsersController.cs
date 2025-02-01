@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyTeamsHub.APIs.Core.Results;
 using MyTeamsHub.APIs.Core.Results.Base;
 using MyTeamsHub.APIs.Core.Services;
 using MyTeamsHub.Domain.Entities.Users;
 using MyTeamsHub.Domain.Services.Common;
+using MyTeamsHub.Domain.Services.Organization.GetAll;
 using MyTeamsHub.Domain.Services.Organizations;
-using MyTeamsHub.Domain.Services.Users;
+using MyTeamsHub.Domain.Services.User.Create;
+using MyTeamsHub.Domain.Services.User.GetAll;
+using MyTeamsHub.Domain.Services.User.GetById;
+using MyTeamsHub.Domain.Services.User.Update;
 using MyTeamsHub.Organization.API.Extensions;
 using MyTeamsHub.Organization.API.Models.V1.Users;
 using MyTeamsHub.Persistence.Models.Types;
@@ -22,21 +27,18 @@ namespace MyTeamsHub.Organization.API.Controllers.V1;
 [Route("api/v{version:apiVersion}/users")]
 public class UsersController : BaseApiController
 {
-    private readonly IUserService _userService;
     private readonly ICurrentUserProvider _currentUserProvider;
-    private readonly IOrganizationService _organizationService;
+    private readonly IMediator _mediator;
 
     /// <summary>
     /// Constructor
     /// </summary>
     public UsersController(
-        IUserService userService,
         ICurrentUserProvider currentUserProvider,
-        IOrganizationService organizationService)
+        IMediator mediator)
     {
-        _userService = userService;
         _currentUserProvider = currentUserProvider;
-        _organizationService = organizationService;
+        _mediator = mediator;
     }
 
     /// <summary>
@@ -48,23 +50,14 @@ public class UsersController : BaseApiController
     [SwaggerResponse((int)HttpStatusCode.OK, "Signup", typeof(ApiDataResult<NewUser>))]
     public async Task<IActionResult> SignUpAsync([FromBody] UserSignupRequestDto requestDto, CancellationToken cancellationToken)
     {
-        ServiceDataResult<User> getUserResult = await _userService.GetAsync(requestDto.Email, cancellationToken);
-        if (!getUserResult.HasFailed && getUserResult.Data != null)
-        {
-            return ApiBadRequest.WithErrorCode(ErrorCodes.InvalidEmail);
-        }
+        //ServiceDataResult<User> getUserResult = await _userService.GetAsync(requestDto.Email, cancellationToken);
+        //if (!getUserResult.HasFailed && getUserResult.Data != null)
+        //{
+        //    return ApiBadRequest.WithErrorCode(ErrorCodes.InvalidEmail);
+        //}
 
-
-        var serviceDataResult = await _userService.CreateAsync(new NewUser
-        {
-            Email = requestDto.Email,
-            FirstName = requestDto.FirstName,
-            LastName = requestDto.LastName,
-            Password = requestDto.Password,
-            PhoneNumber = requestDto.PhoneNumber,
-            UserStatus = (int)UserStatus.Active,
-            UserType = (int)UserType.ClientAdmin
-        }, cancellationToken);
+        var command = new CreateUserCommand(requestDto.FirstName, requestDto.LastName, requestDto.PhoneNumber, requestDto.Email, requestDto.Password, (int)UserStatus.Active, (int)UserType.ClientAdmin);
+        var serviceDataResult = await _mediator.Send(command, cancellationToken);
 
         return serviceDataResult.ToActionResult();
     }
@@ -76,7 +69,8 @@ public class UsersController : BaseApiController
     [SwaggerResponse((int)HttpStatusCode.OK, "Get current user metadata", typeof(ApiDataResult<User>))]
     public async Task<IActionResult> GetMyProfileAsync(CancellationToken cancellationToken)
     {
-        var serviceDataResult = await _userService.GetAsync(_currentUserProvider.CurrentUserId, cancellationToken);
+        var query  = new GetUserByIdQuery(_currentUserProvider.CurrentUserId);
+        var serviceDataResult = await _mediator.Send(query, cancellationToken);
 
         return serviceDataResult.ToActionResult();
     }
@@ -88,7 +82,8 @@ public class UsersController : BaseApiController
     [SwaggerResponse((int)HttpStatusCode.OK, "Get all employees", typeof(ApiDataResult<IEnumerable<ClientUser>>))]
     public async Task<IActionResult> GetAllEmployeesAsync(CancellationToken cancellationToken)
     {
-        var serviceDataResult = await _organizationService.GetAllAsync(_currentUserProvider.CurrentUserId, cancellationToken);
+        var organizationsQuery = new GetAllOrganizationsQuery(_currentUserProvider.CurrentUserId);
+        var serviceDataResult = await _mediator.Send(organizationsQuery, cancellationToken);
         if (serviceDataResult.HasFailed)
         {
             return ApiBadRequest.WithErrorCode(serviceDataResult.ErrorCode);
@@ -99,7 +94,8 @@ public class UsersController : BaseApiController
             return ApiOk.WithData<IEnumerable<UsersResponseDto>>(Array.Empty<UsersResponseDto>());
         }
 
-        var employeesResult = await _userService.GetAllAsync(serviceDataResult.Data.Select(x => x.OrganizationId), cancellationToken);
+        var query = new GetAllUsersQuery(serviceDataResult.Data.Select(x => x.OrganizationId));
+        var employeesResult = await _mediator.Send(query, cancellationToken);
 
         return employeesResult.ToActionResult();
     }
@@ -112,7 +108,8 @@ public class UsersController : BaseApiController
     [HttpPatch]
     public async Task<IActionResult> UpdateAsync(UpdateUserRequestDto requestDto, CancellationToken cancellationToken)
     {
-        var serviceResult = await _userService.UpdateAsync(requestDto.UserId, requestDto.FirstName, requestDto.LastName, requestDto.Phone, requestDto.Status, requestDto.Title, cancellationToken);
+        var command = new UpdateUserCommand(requestDto.UserId, requestDto.FirstName, requestDto.LastName, requestDto.Phone, requestDto.Status, requestDto.Title);
+        var serviceResult = await _mediator.Send(command, cancellationToken);
 
         return serviceResult.ToActionResult();
     }

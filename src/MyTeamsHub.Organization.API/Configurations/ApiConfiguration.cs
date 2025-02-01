@@ -3,7 +3,6 @@ using MyTeamsHub.APIs.Core.Services;
 using MyTeamsHub.Domain.Services;
 using MyTeamsHub.Domain.Services.Auth;
 using MyTeamsHub.Domain.Services.Organizations;
-using MyTeamsHub.Domain.Services.Users;
 using MyTeamsHub.Persistence;
 using MyTeamsHub.Persistence.Registers;
 using MyTeamsHub.Persistence.Repositories;
@@ -24,12 +23,12 @@ internal static class ApiConfiguration
         builder.Services.ConfigurateAPIServices();
 
         builder.Services.AddScoped<IIdentityService, IdentityService>();
-        builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<ICryptoService, CryptoService>();
-        builder.Services.AddScoped<IOrganizationService, OrganizationService>();
-        builder.Services.AddScoped<ITeamService, TeamService>();
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(IIdentityService).Assembly));
+
 
         builder.Services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
 

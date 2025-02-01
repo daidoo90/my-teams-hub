@@ -1,6 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using MyTeamsHub.Domain.Entities.Auth;
-using MyTeamsHub.Domain.Entities.Users;
 using MyTeamsHub.Domain.Services.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,12 +9,12 @@ namespace MyTeamsHub.Domain.Services.Auth;
 
 public interface IIdentityService
 {
-    ServiceDataResult<UserToken> GetToken(User user);
+    ServiceDataResult<UserToken> GetToken(Entities.Users.User user);
 }
 
 public class IdentityService : IIdentityService
 {
-    public ServiceDataResult<UserToken> GetToken(User user)
+    public ServiceDataResult<UserToken> GetToken(Entities.Users.User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
 
