@@ -1,4 +1,8 @@
-﻿using MediatR;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
+using System.Net;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyTeamsHub.APIs.Core.Results;
 using MyTeamsHub.APIs.Core.Services;
@@ -13,7 +17,6 @@ using MyTeamsHub.Organization.API.Extensions;
 using MyTeamsHub.Organization.API.Models.V1.Organizations;
 using MyTeamsHub.Organization.API.Models.V1.Teams;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Net;
 
 namespace MyTeamsHub.Organization.API.Controllers.V1;
 

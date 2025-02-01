@@ -7,7 +7,7 @@ public sealed record CreateOrganizationCommand(string Name, string Description, 
 
 public class CreateOrganizationCommandHandler(IOrganizationsRepository organizationsRepository) : ICommandHandler<CreateOrganizationCommand, Guid>
 {
-    private readonly IOrganizationsRepository _organizationRepository = organizationsRepository;
+    private readonly IOrganizationsRepository _organizationsRepository = organizationsRepository;
 
     public async Task<ServiceDataResult<Guid>> Handle(CreateOrganizationCommand request, CancellationToken cancellationToken)
     {
@@ -17,12 +17,12 @@ public class CreateOrganizationCommandHandler(IOrganizationsRepository organizat
         if (string.IsNullOrEmpty(request.Description))
             return ServiceDataResult<Guid>.WithError(ErrorCodes.InvalidOrganizationDescription);
 
-        var organization = await _organizationRepository.FirstOrDefaultAsync(x => x.Name.Contains(request.Name));
+        var organization = await _organizationsRepository.FirstOrDefaultAsync(x => x.Name.Contains(request.Name));
         if (organization != null &&
            string.Equals(organization.Name, request.Name, StringComparison.OrdinalIgnoreCase))
             return ServiceDataResult<Guid>.WithError(ErrorCodes.OrganizationAlreadyExists);
 
-        var newOrgId = await _organizationRepository.CreateAsync(request.Name, request.Description, request.UserId, cancellationToken);
+        var newOrgId = await _organizationsRepository.CreateAsync(request.Name, request.Description, request.UserId, cancellationToken);
 
         return ServiceDataResult<Guid>.Created(newOrgId);
     }
