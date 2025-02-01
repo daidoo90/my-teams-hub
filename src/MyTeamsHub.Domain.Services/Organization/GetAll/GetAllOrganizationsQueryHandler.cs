@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using MyTeamsHub.Domain.Entities.Organizations;
 using MyTeamsHub.Domain.Services.Common;
 using MyTeamsHub.Domain.Services.Organizations;
@@ -7,7 +8,7 @@ namespace MyTeamsHub.Domain.Services.Organization.GetAll;
 
 public sealed record GetAllOrganizationsQuery(Guid TeamMemberId) : IQuery<IEnumerable<OrganizationMember>>;
 
-internal class GetAllOrganizationsQueryHandler(IOrganizationsRepository organizationsRepository) : IQueryHandler<GetAllOrganizationsQuery, IEnumerable<OrganizationMember>>
+public class GetAllOrganizationsQueryHandler(IOrganizationsRepository organizationsRepository) : IQueryHandler<GetAllOrganizationsQuery, IEnumerable<OrganizationMember>>
 {
     private readonly IOrganizationsRepository _organizationsRepository = organizationsRepository;
 

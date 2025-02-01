@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Reflection;
+using System.Text;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.Filters;
-using System.Reflection;
-using System.Text;
 
 namespace MyTeamsHub.APIs.Core.Configurations;
 
@@ -71,7 +72,7 @@ public static class SwaggerConfiguration
                     }
                 });
 
-                string filePath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetEntryAssembly().GetName().Name}.xml");
+                string filePath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetEntryAssembly()?.GetName().Name}.xml");
                 c.IncludeXmlComments(filePath);
                 c.CustomSchemaIds(type => type.ToString());
             })

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using MyTeamsHub.APIs.Core.Results;
 using MyTeamsHub.Domain.Services.Common;
 
@@ -18,7 +19,7 @@ public class NomenclaturesController : BaseApiController
     /// </summary>
     [HttpGet]
     [Route("codes")]
-    public async Task<IActionResult> GetCodesAsync(CancellationToken cancellationToken)
+    public IActionResult GetCodesAsync(CancellationToken cancellationToken)
     {
         var instance = Activator.CreateInstance<ErrorCodes>();
         var codes = typeof(ErrorCodes).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);

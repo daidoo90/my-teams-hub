@@ -10,21 +10,21 @@
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Filters" Version="8.0.1" />
-
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.6" />
+
+    
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.5" />
 
-    <PackageVersion Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.6" />
     <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
 
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.3" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3" />
-    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
 
