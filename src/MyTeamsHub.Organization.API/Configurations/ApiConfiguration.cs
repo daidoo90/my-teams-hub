@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.Extensions.Options;
 
 using MyTeamsHub.Core.Application;
 using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence;
-using MyTeamsHub.Persistence.Core.Options;
 using MyTeamsHub.Persistence.Registers;
 
 namespace MyTeamsHub.Organization.API.Configurations;
@@ -14,12 +12,6 @@ internal static class ApiConfiguration
 {
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
-        // builder.Services.AddAppSettings();
-        //var configuration = builder.Configuration as IConfiguration;
-        //  IAppSettings appSettings = configuration.Get<AppSettings>() ?? throw new AppSettingsException($"Can't load app settings configurations.");
-
-        var databaseOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseOptions>>().Value.Validate();
-
         builder.Services.ConfigureDefaultOptions(builder.Configuration);
 
         builder.Services
@@ -27,12 +19,12 @@ internal static class ApiConfiguration
             .AddApplication()
             .AddInfrastructure()
             .AddHealthChecks()
-            .AddSqlServer(databaseOptions.ConnectionString);
+            .AddSqlServer(builder.Configuration.GetDatabaseConnectionString());
 
         return builder;
     }
 
-    public static IServiceCollection AddAPIServices(this IServiceCollection services)
+    private static IServiceCollection AddAPIServices(this IServiceCollection services)
     {
         services.AddControllers();
 
@@ -69,7 +61,7 @@ internal static class ApiConfiguration
             });
     }
 
-    public static IServiceCollection ConfigureCors(this IServiceCollection services)
+    private static IServiceCollection ConfigureCors(this IServiceCollection services)
     {
         return services.AddCors(options =>
         {
@@ -81,7 +73,7 @@ internal static class ApiConfiguration
         });
     }
 
-    public static void ConfigureDefaultOptions(this IServiceCollection services, IConfiguration configuration)
+    private static void ConfigureDefaultOptions(this IServiceCollection services, IConfiguration configuration)
     {
         //services.Configure<AssemblyOptions>(opt => opt.MigratorAssembly = Assembly.Load("BookingHub.Infrastructure.Persistence"));
         // services.Configure<HangfireHandlersOptions>(configuration.GetSection(nameof(HangfireHandlersOptions)));

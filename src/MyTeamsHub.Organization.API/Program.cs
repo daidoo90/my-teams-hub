@@ -1,5 +1,3 @@
-
-
 using MyTeamsHub.Organization.API.Configurations;
 
 try

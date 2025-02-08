@@ -37,10 +37,6 @@ public static class DependencyInjection
                 options.EnableDetailedErrors();
             });
 
-        services
-            .AddHealthChecks()
-            .AddSqlServer(databaseOptions.ConnectionString);
-
         return services;
     }
 }
