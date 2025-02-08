@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Extensions.Options;
 
 using MyTeamsHub.Core.Application;
 using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence;
+using MyTeamsHub.Persistence.Core.Options;
 using MyTeamsHub.Persistence.Registers;
 
 namespace MyTeamsHub.Organization.API.Configurations;
@@ -13,9 +15,10 @@ internal static class ApiConfiguration
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
         // builder.Services.AddAppSettings();
-
-        var configuration = builder.Configuration as IConfiguration;
+        //var configuration = builder.Configuration as IConfiguration;
         //  IAppSettings appSettings = configuration.Get<AppSettings>() ?? throw new AppSettingsException($"Can't load app settings configurations.");
+
+        var databaseOptions = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseOptions>>().Value.Validate();
 
         builder.Services.ConfigureDefaultOptions(builder.Configuration);
 
@@ -23,22 +26,23 @@ internal static class ApiConfiguration
             .AddAPIServices()
             .AddApplication()
             .AddInfrastructure()
-            .AddHttpContextAccessor()
-            .AddHealthChecks();
+            .AddHealthChecks()
+            .AddSqlServer(databaseOptions.ConnectionString);
 
         return builder;
     }
 
     public static IServiceCollection AddAPIServices(this IServiceCollection services)
     {
-        services.ConfigureControllers()
-                       //.ConfigureServices()
-                       .AddEndpointsApiExplorer()
-                       .AddVersioning()
-                       .AddSwagger<IApiAssembly>("My Teams Hub API")
-                       .ConfigureCors()
-                       //.AddAppIdentity(appSettings)
-                       .AddResponseCompression(opts => opts.EnableForHttps = true);
+        services.AddControllers();
+
+        services
+            .AddEndpointsApiExplorer()
+            .AddHttpContextAccessor()
+            .AddVersioning()
+            .AddSwagger()
+            .ConfigureCors()
+            .AddResponseCompression(opts => opts.EnableForHttps = true);
 
         services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
 

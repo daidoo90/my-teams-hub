@@ -10,10 +10,11 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace MyTeamsHub.Organization.API.Configurations;
 
-
 public static class SwaggerConfiguration
 {
-    public static IServiceCollection AddSwagger<TAssembly>(this IServiceCollection services, string title)
+    private const string OpenApiTitle = "My Teams Hub API";
+
+    public static IServiceCollection AddSwagger(this IServiceCollection services)
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
@@ -42,7 +43,7 @@ public static class SwaggerConfiguration
         return services
             .AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = title, Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = OpenApiTitle, Version = "v1" });
                 c.ResolveConflictingActions(descriptions => descriptions.First());
                 c.EnableAnnotations();
 
@@ -75,10 +76,10 @@ public static class SwaggerConfiguration
                 c.IncludeXmlComments(filePath);
                 c.CustomSchemaIds(type => type.ToString());
             })
-            .AddSwaggerExamplesFromAssemblyOf(typeof(TAssembly));
+            .AddSwaggerExamplesFromAssemblyOf(typeof(SwaggerConfiguration));
     }
 
-    public static WebApplication ConfigureSwagger(this WebApplication app, string title)
+    public static WebApplication ConfigureSwagger(this WebApplication app)
     {
         app.UseSwagger(c =>
         {
@@ -99,7 +100,7 @@ public static class SwaggerConfiguration
         .UseSwaggerUI(c =>
         {
             c.RoutePrefix = string.Empty;
-            c.DocumentTitle = title;
+            c.DocumentTitle = OpenApiTitle;
 
             var versionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
             foreach (var description in versionProvider.ApiVersionDescriptions.Reverse())

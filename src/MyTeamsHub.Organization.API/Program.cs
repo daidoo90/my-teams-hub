@@ -4,14 +4,14 @@ using MyTeamsHub.Organization.API.Configurations;
 
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-    ApiConfiguration.ConfigureServices(builder);
+    builder.ConfigureServices();
 
-    builder
+    await builder
         .Build()
         .UseWebApiPipeline()
-        .Run();
+        .RunAsync();
 }
 catch (Exception exc)
 {

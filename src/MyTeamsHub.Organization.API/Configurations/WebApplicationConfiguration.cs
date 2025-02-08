@@ -1,4 +1,6 @@
-﻿namespace MyTeamsHub.Organization.API.Configurations;
+﻿using HealthChecks.UI.Client;
+
+namespace MyTeamsHub.Organization.API.Configurations;
 
 internal static class WebApplicationConfiguration
 {
@@ -18,17 +20,19 @@ internal static class WebApplicationConfiguration
 
     public static WebApplication UseWebApiPipeline(this WebApplication app)
     {
-        app.ConfigureSwagger("My Teams Hub API")
-        // .ConfigureHealthCheck()
-        .UseStaticFiles()
-        .UseRouting()
-        .UseCors("CostPolicy")
-        .UseAuthentication()
-        .UseAuthorization();
+        app
+            .ConfigureSwagger()
+            .UseRouting()
+            .UseCors("CostPolicy")
+            .UseAuthentication()
+            .UseAuthorization();
 
         app.MapControllers();
 
-        app.MapHealthChecks("health");
+        app.MapHealthChecks("health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+        {
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        });
 
         return app;
     }
