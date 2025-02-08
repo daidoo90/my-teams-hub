@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyTeamsHub.APIs.Core.Results.Base;
-using System.Net;
+﻿using System.Net;
 
-namespace MyTeamsHub.APIs.Core.Results;
+using Microsoft.AspNetCore.Mvc;
 
-public class ApiInternalServerError : JsonResult
+using MyTeamsHub.Organization.API.Models.Common.Base;
+
+namespace MyTeamsHub.Organization.API.Models.Common;
+
+public sealed class ApiInternalServerError : JsonResult
 {
     public ApiInternalServerError(object? value) : base(value)
     {

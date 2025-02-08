@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MyTeamsHub.Domain.Services.Common;
+namespace MyTeamsHub.Core.Application.Common;
 
 public interface ICommand : IRequest<ServiceResult>
 {
@@ -9,7 +9,7 @@ public interface ICommand : IRequest<ServiceResult>
 
 public interface ICommand<TResponse> : IRequest<ServiceDataResult<TResponse>>
 {
-    
+
 }
 
 public interface ICommandHandler<in TRequest> : IRequestHandler<TRequest, ServiceResult>

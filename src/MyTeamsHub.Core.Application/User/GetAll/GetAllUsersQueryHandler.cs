@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Core.Domain.Users;
-using MyTeamsHub.Domain.Services.Common;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Users;
 
-namespace MyTeamsHub.Domain.Services.User.GetAll;
+namespace MyTeamsHub.Core.Application.User.GetAll;
 
 public sealed record GetAllUsersQuery(IEnumerable<Guid> Organizations) : IQuery<IEnumerable<ClientUser>>;
 

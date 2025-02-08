@@ -2,15 +2,14 @@
 using System.Text;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.Filters;
 
-namespace MyTeamsHub.APIs.Core.Configurations;
+namespace MyTeamsHub.Organization.API.Configurations;
+
 
 public static class SwaggerConfiguration
 {

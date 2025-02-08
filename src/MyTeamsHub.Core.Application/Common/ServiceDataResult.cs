@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Domain.Services.Common;
+﻿namespace MyTeamsHub.Core.Application.Common;
 
 public class ServiceDataResult<TData> : ServiceResult
 {

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyTeamsHub.APIs.Core.Results.Base;
-using System.Net;
+﻿using System.Net;
 
-namespace MyTeamsHub.APIs.Core.Results;
+using Microsoft.AspNetCore.Mvc;
+
+using MyTeamsHub.Organization.API.Models.Common.Base;
+
+namespace MyTeamsHub.Organization.API.Models.Common;
 
 public class ApiBadRequest : JsonResult
 {

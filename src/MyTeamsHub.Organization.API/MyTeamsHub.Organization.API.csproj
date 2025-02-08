@@ -19,10 +19,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyTeamsHub.APIs.Core\MyTeamsHub.APIs.Core.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Core.Domain\MyTeamsHub.Core.Domain.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Organization.API.Models\MyTeamsHub.Organization.API.Models.csproj" />

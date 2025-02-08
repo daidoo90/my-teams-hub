@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MyTeamsHub.Domain.Services\MyTeamsHub.Domain.Services.csproj" />
+    <ProjectReference Include="..\..\src\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj" />
   </ItemGroup>
 
 </Project>

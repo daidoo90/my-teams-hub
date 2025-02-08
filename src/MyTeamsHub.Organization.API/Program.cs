@@ -1,10 +1,12 @@
+
+
 using MyTeamsHub.Organization.API.Configurations;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-    builder.ConfigureServices();
+    ApiConfiguration.ConfigureServices(builder);
 
     builder
         .Build()

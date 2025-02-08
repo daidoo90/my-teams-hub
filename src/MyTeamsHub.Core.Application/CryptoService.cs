@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
-namespace MyTeamsHub.Domain.Services;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+
+namespace MyTeamsHub.Core.Application;
 
 public interface ICryptoService
 {

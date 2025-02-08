@@ -1,6 +1,6 @@
-﻿namespace MyTeamsHub.APIs.Core.Results.Base;
+﻿namespace MyTeamsHub.Organization.API.Models.Common.Base;
 
-public class ApiDataResult<TData> : ApiResult
+public sealed class ApiDataResult<TData> : ApiResult
 {
     public ApiDataResult(TData value)
     {

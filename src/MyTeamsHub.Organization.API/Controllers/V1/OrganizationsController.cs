@@ -2,20 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System.Net;
+
 using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
-using MyTeamsHub.APIs.Core.Results;
-using MyTeamsHub.APIs.Core.Services;
-using MyTeamsHub.Domain.Services.Organization.Create;
-using MyTeamsHub.Domain.Services.Organization.Delete;
-using MyTeamsHub.Domain.Services.Organization.GetAll;
+
+using MyTeamsHub.Core.Application.Organization.Create;
+using MyTeamsHub.Core.Application.Organization.Delete;
+using MyTeamsHub.Core.Application.Organization.GetAll;
 using MyTeamsHub.Domain.Services.Team.Delete;
 using MyTeamsHub.Domain.Services.Team.GetAll;
 using MyTeamsHub.Domain.Services.Team.GetById;
 using MyTeamsHub.Domain.Services.Team.Update;
 using MyTeamsHub.Organization.API.Extensions;
+using MyTeamsHub.Organization.API.Models.Common;
+using MyTeamsHub.Organization.API.Models.Common.Base;
 using MyTeamsHub.Organization.API.Models.V1.Organizations;
 using MyTeamsHub.Organization.API.Models.V1.Teams;
+using MyTeamsHub.Organization.API.Services;
+
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace MyTeamsHub.Organization.API.Controllers.V1;
@@ -49,7 +54,7 @@ public class OrganizationsController : ControllerBase
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns></returns>
     [HttpPost]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Create organization", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<Guid>))]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Create organization", typeof(ApiDataResult<Guid>))]
     public async Task<IActionResult> CreateOrganizationAsync([FromBody] NewOrganizationRequestDto newOrganizationRequest, CancellationToken cancellationToken)
     {
         var command = new CreateOrganizationCommand(newOrganizationRequest.Name, newOrganizationRequest.Description, _currentUserProvider.CurrentUserId);
@@ -64,7 +69,7 @@ public class OrganizationsController : ControllerBase
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Organizations metadata</returns>
     [HttpGet]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Get organization", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<GetUserOrganizationResponseDto>))]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Get organization", typeof(ApiDataResult<GetUserOrganizationResponseDto>))]
     public async Task<ActionResult> GetOrganizationsAsync(CancellationToken cancellationToken)
     {
         var query = new GetAllOrganizationsQuery(_currentUserProvider.CurrentUserId);
@@ -101,7 +106,7 @@ public class OrganizationsController : ControllerBase
     /// <param name="cancellationToken">Cancellation token</param>
     [HttpPost]
     [Route("{organizationId}/teams")]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Create new team", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<Guid>))]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Create new team", typeof(ApiDataResult<Guid>))]
     public async Task<IActionResult> CreateTeamAsync([FromRoute] Guid organizationId, [FromBody] NewTeamRequestDto newTeamRequest, CancellationToken cancellationToken)
     {
         var command = new CreateOrganizationCommand(newTeamRequest.Name, newTeamRequest.Description, _currentUserProvider.CurrentUserId);
@@ -120,7 +125,7 @@ public class OrganizationsController : ControllerBase
     /// <returns>Teams metadata</returns>
     [HttpGet]
     [Route("{organizationId}/teams")]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Get teams metadata", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<GetTeamsResponseDto>))]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Get teams metadata", typeof(ApiDataResult<GetTeamsResponseDto>))]
     public async Task<IActionResult> GetTeamsAsync([FromRoute] string organizationId, [FromQuery] int? pageNumber, [FromQuery] int? pageSize, CancellationToken cancellationToken)
     {
         pageNumber = pageNumber ?? 1;
@@ -200,7 +205,7 @@ public class OrganizationsController : ControllerBase
     /// <returns>Team metadata</returns>
     [HttpGet]
     [Route("{organizationId}/teams/{teamId}")]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Get team metadata", typeof(MyTeamsHub.APIs.Core.Results.Base.ApiDataResult<Team>))]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Get team metadata", typeof(ApiDataResult<Team>))]
 
     public async Task<IActionResult> GetTeamsAsync([FromRoute] string organizationId, [FromRoute] string teamId, CancellationToken cancellationToken)
     {

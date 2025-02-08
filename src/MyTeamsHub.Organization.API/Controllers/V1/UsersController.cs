@@ -5,17 +5,17 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using MyTeamsHub.APIs.Core.Results;
-using MyTeamsHub.APIs.Core.Results.Base;
-using MyTeamsHub.APIs.Core.Services;
+using MyTeamsHub.Core.Application.Organization.GetAll;
+using MyTeamsHub.Core.Application.User.Create;
+using MyTeamsHub.Core.Application.User.GetAll;
+using MyTeamsHub.Core.Application.User.GetById;
+using MyTeamsHub.Core.Application.User.Update;
 using MyTeamsHub.Core.Domain.Users;
-using MyTeamsHub.Domain.Services.Organization.GetAll;
-using MyTeamsHub.Domain.Services.User.Create;
-using MyTeamsHub.Domain.Services.User.GetAll;
-using MyTeamsHub.Domain.Services.User.GetById;
-using MyTeamsHub.Domain.Services.User.Update;
 using MyTeamsHub.Organization.API.Extensions;
+using MyTeamsHub.Organization.API.Models.Common;
+using MyTeamsHub.Organization.API.Models.Common.Base;
 using MyTeamsHub.Organization.API.Models.V1.Users;
+using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence.Models.Types;
 
 using Swashbuckle.AspNetCore.Annotations;

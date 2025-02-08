@@ -1,6 +1,6 @@
-﻿namespace MyTeamsHub.APIs.Core.Results.Base;
+﻿namespace MyTeamsHub.Organization.API.Models.Common.Base;
 
-public class ApiError
+public sealed class ApiError
 {
     public ApiError(string code)
     {

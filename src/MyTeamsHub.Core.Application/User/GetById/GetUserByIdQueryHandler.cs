@@ -1,8 +1,8 @@
-﻿using MyTeamsHub.Domain.Services.Common;
+﻿using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Users;
 
-namespace MyTeamsHub.Domain.Services.User.GetById;
+namespace MyTeamsHub.Core.Application.User.GetById;
 
 public sealed record GetUserByIdQuery(Guid UserId) : IQuery<Core.Domain.Users.User>;
 

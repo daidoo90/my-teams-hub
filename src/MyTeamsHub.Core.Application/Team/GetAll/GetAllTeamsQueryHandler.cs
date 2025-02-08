@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using MyTeamsHub.Domain.Services.Common;
-using MyTeamsHub.Domain.Services.Organizations;
+using MyTeamsHub.Core.Application.Common;
+using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Organizations;
 

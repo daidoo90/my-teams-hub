@@ -1,6 +1,4 @@
-﻿using MyTeamsHub.APIs.Core.Configurations;
-
-namespace MyTeamsHub.Organization.API.Configurations;
+﻿namespace MyTeamsHub.Organization.API.Configurations;
 
 internal static class WebApplicationConfiguration
 {
@@ -9,7 +7,7 @@ internal static class WebApplicationConfiguration
     //    builder.Services.AddAppSettings();
 
     //    var configuration = builder.Configuration as IConfiguration;
-    //    IAppSettings appSettings = configuration.Get<AppSettings>() ?? throw new AppSettingsException($"Can't load app settings configurations.");
+    //    //IAppSettings appSettings = configuration.Get<AppSettings>() ?? throw new AppSettingsException($"Can't load app settings configurations.");
 
     //    builder.Services.ConfigureDefaultOptions(builder.Configuration);
 
@@ -24,11 +22,13 @@ internal static class WebApplicationConfiguration
         // .ConfigureHealthCheck()
         .UseStaticFiles()
         .UseRouting()
-        .UseCors(CorsConfiguration.CorsPolicy)
+        .UseCors("CostPolicy")
         .UseAuthentication()
         .UseAuthorization();
 
         app.MapControllers();
+
+        app.MapHealthChecks("health");
 
         return app;
     }

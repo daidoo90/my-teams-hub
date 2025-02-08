@@ -1,11 +1,10 @@
-﻿using MyTeamsHub.APIs.Core.Configurations;
-using MyTeamsHub.APIs.Core.Services;
-using MyTeamsHub.Domain.Services;
-using MyTeamsHub.Domain.Services.Auth;
-using MyTeamsHub.Domain.Services.Organizations;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
+
+using MyTeamsHub.Core.Application;
+using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence;
 using MyTeamsHub.Persistence.Registers;
-using MyTeamsHub.Persistence.Repositories;
 
 namespace MyTeamsHub.Organization.API.Configurations;
 
@@ -20,22 +19,17 @@ internal static class ApiConfiguration
 
         builder.Services.ConfigureDefaultOptions(builder.Configuration);
 
-        builder.Services.ConfigurateAPIServices();
-
-        builder.Services.AddScoped<IIdentityService, IdentityService>();
-        builder.Services.AddScoped<ICryptoService, CryptoService>();
-        builder.Services.AddHttpContextAccessor();
-        builder.Services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
-
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(IIdentityService).Assembly));
-
-
-        builder.Services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
+        builder.Services
+            .AddAPIServices()
+            .AddApplication()
+            .AddInfrastructure()
+            .AddHttpContextAccessor()
+            .AddHealthChecks();
 
         return builder;
     }
 
-    public static IServiceCollection ConfigurateAPIServices(this IServiceCollection services)
+    public static IServiceCollection AddAPIServices(this IServiceCollection services)
     {
         services.ConfigureControllers()
                        //.ConfigureServices()
@@ -46,9 +40,41 @@ internal static class ApiConfiguration
                        //.AddAppIdentity(appSettings)
                        .AddResponseCompression(opts => opts.EnableForHttps = true);
 
-        services.ConfigureInfrastructurePersistence();
+        services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
 
         return services;
+    }
+
+    private static IServiceCollection AddVersioning(this IServiceCollection services)
+    {
+        return services
+            .AddApiVersioning(opts =>
+            {
+                opts.DefaultApiVersion = new ApiVersion(1, 0);
+                opts.AssumeDefaultVersionWhenUnspecified = true;
+                opts.ReportApiVersions = true;
+                opts.ApiVersionReader = ApiVersionReader.Combine(
+                        new UrlSegmentApiVersionReader(),
+                        new HeaderApiVersionReader("X-Version"),
+                        new MediaTypeApiVersionReader("ver"));
+            })
+            .AddVersionedApiExplorer(opts =>
+            {
+                opts.GroupNameFormat = "'v'VVV";
+                opts.SubstituteApiVersionInUrl = true;
+            });
+    }
+
+    public static IServiceCollection ConfigureCors(this IServiceCollection services)
+    {
+        return services.AddCors(options =>
+        {
+            options.AddPolicy("CostPolicy",
+                builder =>
+                    builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .WithMethods(HttpMethods.Get, HttpMethods.Post, HttpMethods.Put, HttpMethods.Patch, HttpMethods.Options));
+        });
     }
 
     public static void ConfigureDefaultOptions(this IServiceCollection services, IConfiguration configuration)

@@ -1,9 +1,9 @@
-﻿using MyTeamsHub.Domain.Services.Common;
+﻿using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Types;
 using MyTeamsHub.Persistence.Models.Users;
 
-namespace MyTeamsHub.Domain.Services.User.Create;
+namespace MyTeamsHub.Core.Application.User.Create;
 
 public sealed record CreateUserCommand(string FirstName, string LastName, string Email, string PhoneNumber, string Password, int UserStatus, int UserType) : ICommand<Guid>;
 

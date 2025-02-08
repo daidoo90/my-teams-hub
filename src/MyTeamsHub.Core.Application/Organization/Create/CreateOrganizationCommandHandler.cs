@@ -1,7 +1,7 @@
-﻿using MyTeamsHub.Domain.Services.Common;
-using MyTeamsHub.Domain.Services.Organizations;
+﻿using MyTeamsHub.Core.Application.Common;
+using MyTeamsHub.Core.Application.Organizations;
 
-namespace MyTeamsHub.Domain.Services.Organization.Create;
+namespace MyTeamsHub.Core.Application.Organization.Create;
 
 public sealed record CreateOrganizationCommand(string Name, string Description, Guid UserId) : ICommand<Guid>;
 

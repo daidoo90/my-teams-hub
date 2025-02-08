@@ -4,10 +4,10 @@ using System.Text;
 
 using Microsoft.IdentityModel.Tokens;
 
+using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Core.Domain.Auth;
-using MyTeamsHub.Domain.Services.Common;
 
-namespace MyTeamsHub.Domain.Services.Auth;
+namespace MyTeamsHub.Core.Application.Auth;
 
 public interface IIdentityService
 {

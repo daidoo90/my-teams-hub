@@ -1,16 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MyTeamsHub.Persistence.Core.Options;
+
+using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Persistence.Context;
+using MyTeamsHub.Persistence.Core.Options;
 using MyTeamsHub.Persistence.Core.Registers;
+using MyTeamsHub.Persistence.Repositories;
 
 namespace MyTeamsHub.Persistence;
 
-public static class PersistenceRegistration
+public static class DependencyInjection
 {
-    public static IServiceCollection ConfigureInfrastructurePersistence(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
+        services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
         services.AddDbContext();
         services.AddRepositories<OrganizationDbContext>();
 
@@ -32,6 +36,10 @@ public static class PersistenceRegistration
                 options.EnableSensitiveDataLogging();
                 options.EnableDetailedErrors();
             });
+
+        services
+            .AddHealthChecks()
+            .AddSqlServer(databaseOptions.ConnectionString);
 
         return services;
     }

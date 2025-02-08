@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using MyTeamsHub.APIs.Core.Results;
-using MyTeamsHub.Domain.Services.Common;
+using MyTeamsHub.Core.Application.Common;
+using MyTeamsHub.Organization.API.Models.Common;
 
 namespace MyTeamsHub.Organization.API.Controllers.V1;
 

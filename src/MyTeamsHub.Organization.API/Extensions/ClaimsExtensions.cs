@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace MyTeamsHub.APIs.Core.Extensions;
+namespace MyTeamsHub.Organization.API.Extensions;
 
 public static class ClaimsExtensions
 {
@@ -8,7 +8,7 @@ public static class ClaimsExtensions
     {
         var userIdClaim = claims.SingleOrDefault(x => x.Type == "userId");
 
-        if(userIdClaim != null && Guid.TryParse(userIdClaim.Value, out var userIdGuid))
+        if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out var userIdGuid))
         {
             return userIdGuid;
         }

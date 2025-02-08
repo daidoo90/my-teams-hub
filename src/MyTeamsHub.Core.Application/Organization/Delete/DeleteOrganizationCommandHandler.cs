@@ -1,7 +1,7 @@
-﻿using MyTeamsHub.Domain.Services.Common;
-using MyTeamsHub.Domain.Services.Organizations;
+﻿using MyTeamsHub.Core.Application.Common;
+using MyTeamsHub.Core.Application.Organizations;
 
-namespace MyTeamsHub.Domain.Services.Organization.Delete;
+namespace MyTeamsHub.Core.Application.Organization.Delete;
 
 public sealed record DeleteOrganizationCommand(Guid OrganizationId) : ICommand;
 

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace MyTeamsHub.APIs.Core.Results.Base;
+﻿namespace MyTeamsHub.Organization.API.Models.Common.Base;
 
 public class ApiResult
 {
@@ -20,5 +17,6 @@ public class ApiResult
         Errors.Add(new ApiError(code, message));
     }
 
-    public List<ApiError> Errors { get; } = new();
+    public List<ApiError> Errors { get; } = [];
 }
+

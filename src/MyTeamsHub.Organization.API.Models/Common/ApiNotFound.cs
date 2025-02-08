@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyTeamsHub.APIs.Core.Results.Base;
-using System.Net;
+﻿using System.Net;
 
-namespace MyTeamsHub.APIs.Core.Results;
+using Microsoft.AspNetCore.Mvc;
 
-public class ApiNotFound : JsonResult
+using MyTeamsHub.Organization.API.Models.Common.Base;
+
+namespace MyTeamsHub.Organization.API.Models.Common;
+
+public sealed class ApiNotFound : JsonResult
 {
     public ApiNotFound(object? value) : base(value)
     {

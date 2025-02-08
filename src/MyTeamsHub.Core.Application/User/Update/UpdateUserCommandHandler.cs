@@ -1,16 +1,16 @@
-﻿using MyTeamsHub.Domain.Services.Common;
+﻿using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Types;
 using MyTeamsHub.Persistence.Models.Users;
 
-namespace MyTeamsHub.Domain.Services.User.Update;
+namespace MyTeamsHub.Core.Application.User.Update;
 
 public sealed record UpdateUserCommand(Guid UserId, string FirstName, string LastName, string PhoneNumber, int Status, string Title) : ICommand;
 
 public class UpdateUserCommandHandler(IEfRepository<UserEntity> users) : ICommandHandler<UpdateUserCommand>
 {
     private readonly IEfRepository<UserEntity> _users = users;
-     
+
     public async Task<ServiceResult> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _users.FirstOrDefaultAsync(u => u.UserId == request.UserId, cancellationToken);

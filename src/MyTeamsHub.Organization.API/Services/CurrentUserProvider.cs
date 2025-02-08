@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using MyTeamsHub.APIs.Core.Extensions;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
-namespace MyTeamsHub.APIs.Core.Services;
+using MyTeamsHub.Organization.API.Extensions;
+
+namespace MyTeamsHub.Organization.API.Services;
 
 public interface ICurrentUserProvider
 {

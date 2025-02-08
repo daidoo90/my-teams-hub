@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using MyTeamsHub.Core.Application.Common;
+using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Core.Domain.Organizations;
-using MyTeamsHub.Domain.Services.Common;
-using MyTeamsHub.Domain.Services.Organizations;
 
-namespace MyTeamsHub.Domain.Services.Organization.GetAll;
+namespace MyTeamsHub.Core.Application.Organization.GetAll;
 
 public sealed record GetAllOrganizationsQuery(Guid TeamMemberId) : IQuery<IEnumerable<OrganizationMember>>;
 

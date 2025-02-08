@@ -1,4 +1,4 @@
-﻿using MyTeamsHub.Domain.Services.Organizations;
+﻿using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Persistence.Core.Context;
 using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Organizations;
@@ -15,10 +15,10 @@ public class OrganizationsRepository : EfRepository<OrganizationEntity>, IOrgani
     public async Task<Guid> CreateAsync(string name, string description, Guid userId, CancellationToken cancellationToken = default)
     {
         var now = DateTime.UtcNow;
-        
+
         var organization = new OrganizationEntity
-        { 
-            Name = name, 
+        {
+            Name = name,
             Description = description,
             CreatedOn = now,
         };
