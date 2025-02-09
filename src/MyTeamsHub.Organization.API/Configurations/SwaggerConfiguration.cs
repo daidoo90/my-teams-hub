@@ -10,11 +10,11 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace MyTeamsHub.Organization.API.Configurations;
 
-public static class SwaggerConfiguration
+internal static class SwaggerConfiguration
 {
     private const string OpenApiTitle = "My Teams Hub API";
 
-    public static IServiceCollection AddSwagger(this IServiceCollection services)
+    internal static IServiceCollection AddSwagger(this IServiceCollection services)
     {
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
@@ -79,7 +79,10 @@ public static class SwaggerConfiguration
             .AddSwaggerExamplesFromAssemblyOf(typeof(SwaggerConfiguration));
     }
 
-    public static WebApplication ConfigureSwagger(this WebApplication app)
+    /// <summary>
+    /// Register Swagger midleware
+    /// </summary>
+    internal static WebApplication ConfigureSwagger(this WebApplication app)
     {
         app.UseSwagger(c =>
         {

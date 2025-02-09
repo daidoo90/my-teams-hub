@@ -17,13 +17,13 @@ public class ServiceResult
 
     public bool IsSuccessful { get; }
 
-    public string? ErrorCode { get; }
+    public string ErrorCode { get; }
 
     public ResultType ResultType { get; }
 
-    public static ServiceResult Success => new ServiceResult();
+    public static ServiceResult Success => new();
 
-    public static ServiceResult WithError(string error) => new ServiceResult(error);
+    public static ServiceResult WithError(string error) => new(error);
 
     public bool HasFailed => !IsSuccessful;
 }

@@ -13,5 +13,5 @@ public sealed class ApiNotFound : JsonResult
         StatusCode = (int)HttpStatusCode.NotFound;
     }
 
-    public static ApiNotFound WithErrorCode(string code) => new ApiNotFound(new ApiResult(code));
+    public static ApiNotFound WithErrorCode(string code) => new(new ApiResult(code));
 }

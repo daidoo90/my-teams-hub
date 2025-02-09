@@ -13,5 +13,5 @@ public sealed class ApiOk : JsonResult
         StatusCode = (int)HttpStatusCode.OK;
     }
 
-    public static ApiOk WithData<TData>(TData data) => new ApiOk(new ApiDataResult<TData>(data));
+    public static ApiOk WithData<TData>(TData data) => new(new ApiDataResult<TData>(data));
 }

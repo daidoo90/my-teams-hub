@@ -5,9 +5,9 @@ using MyTeamsHub.Organization.API.Models.Common;
 
 namespace MyTeamsHub.Organization.API.Extensions;
 
-public static class ServiceDataResultExtensions
+internal static class ServiceDataResultExtensions
 {
-    public static IActionResult ToActionResult<TData>(this ServiceDataResult<TData> serviceDataResult)
+    internal static IActionResult ToActionResult<TData>(this ServiceDataResult<TData> serviceDataResult)
     {
         if (serviceDataResult.HasFailed)
         {
@@ -23,7 +23,7 @@ public static class ServiceDataResultExtensions
         }
     }
 
-    public static IActionResult ToActionResult(this ServiceResult serviceResult)
+    internal static IActionResult ToActionResult(this ServiceResult serviceResult)
     {
         if (serviceResult.HasFailed)
         {

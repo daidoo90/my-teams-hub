@@ -2,9 +2,9 @@
 
 namespace MyTeamsHub.Organization.API.Extensions;
 
-public static class ClaimsExtensions
+internal static class ClaimsExtensions
 {
-    public static Guid GetUserId(this IEnumerable<Claim> claims)
+    internal static Guid GetUserId(this IEnumerable<Claim> claims)
     {
         var userIdClaim = claims.SingleOrDefault(x => x.Type == "userId");
 

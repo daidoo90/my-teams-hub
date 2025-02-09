@@ -10,7 +10,7 @@ namespace MyTeamsHub.Organization.API.Configurations;
 
 internal static class ApiConfiguration
 {
-    public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services.ConfigureDefaultOptions(builder.Configuration);
 

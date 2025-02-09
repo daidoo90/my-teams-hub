@@ -13,5 +13,5 @@ public sealed class ApiCreated : JsonResult
         StatusCode = (int)HttpStatusCode.Created;
     }
 
-    public static ApiCreated WithData<TData>(TData data) => new ApiCreated(new ApiDataResult<TData>(data));
+    public static ApiCreated WithData<TData>(TData data) => new(new ApiDataResult<TData>(data));
 }

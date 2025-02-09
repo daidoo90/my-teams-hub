@@ -13,5 +13,5 @@ public sealed class ApiInternalServerError : JsonResult
         StatusCode = (int)HttpStatusCode.InternalServerError;
     }
 
-    public static ApiInternalServerError WithErrorCode(string code) => new ApiInternalServerError(new ApiResult(code));
+    public static ApiInternalServerError WithErrorCode(string code) => new(new ApiResult(code));
 }

@@ -4,8 +4,9 @@ using Microsoft.Extensions.Options;
 
 using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Persistence.Context;
+using MyTeamsHub.Persistence.Core.Context;
 using MyTeamsHub.Persistence.Core.Options;
-using MyTeamsHub.Persistence.Core.Registers;
+using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Repositories;
 
 namespace MyTeamsHub.Persistence;
@@ -16,7 +17,10 @@ public static class DependencyInjection
     {
         services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
         services.AddDbContext();
-        services.AddRepositories<OrganizationDbContext>();
+
+        services.AddScoped<IDbContext, OrganizationDbContext>();
+        services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
+        services.AddScoped(typeof(IEfDeletableRepository<>), typeof(EfDeletableRepository<>));
 
         return services;
     }

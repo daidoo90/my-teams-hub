@@ -1,6 +1,6 @@
 ﻿namespace MyTeamsHub.Core.Application.Common;
 
-public class ServiceDataResult<TData> : ServiceResult
+public sealed class ServiceDataResult<TData> : ServiceResult
 {
     public ServiceDataResult(TData data, string errorCode)
         : base(errorCode)
@@ -16,7 +16,9 @@ public class ServiceDataResult<TData> : ServiceResult
 
     public TData Data { get; }
 
-    public static ServiceDataResult<TData> WithData(TData data) => new ServiceDataResult<TData>(data, ResultType.Data);
-    public static ServiceDataResult<TData> Created(TData data) => new ServiceDataResult<TData>(data, ResultType.Created);
-    public static ServiceDataResult<TData> WithError(string errorCode) => new ServiceDataResult<TData>(default, errorCode);
+    public static ServiceDataResult<TData> WithData(TData data) => new(data, ResultType.Data);
+
+    public static ServiceDataResult<TData> Created(TData data) => new(data, ResultType.Created);
+
+    public static new ServiceDataResult<TData> WithError(string errorCode) => new(default, errorCode);
 }

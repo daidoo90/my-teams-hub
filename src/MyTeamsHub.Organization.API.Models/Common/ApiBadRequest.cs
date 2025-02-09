@@ -13,5 +13,5 @@ public class ApiBadRequest : JsonResult
         StatusCode = (int)HttpStatusCode.BadRequest;
     }
 
-    public static ApiBadRequest WithErrorCode(string code) => new ApiBadRequest(new ApiResult(code));
+    public static ApiBadRequest WithErrorCode(string code) => new(new ApiResult(code));
 }
