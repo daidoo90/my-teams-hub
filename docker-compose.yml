@@ -8,10 +8,17 @@ services:
     restart: always
     depends_on: 
         - myteamshub.db
+    ports:
+        - 4000:4000
+        - 4001:4001
+        - 9100:9100
+    environment:
+        - ASPNETCORE_URLS=http://+:4000;http://+:4001;http://+:9100
 
   myteamshub.db:
     container_name: myteamshub.db  
     image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
     ports:
       - "1433:1433"
     environment:
