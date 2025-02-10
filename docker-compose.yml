@@ -8,6 +8,7 @@ services:
     restart: always
     depends_on: 
         - myteamshub.mssql.server
+        - myteamshub.postgresql.server
     ports:
         - 4000:4000
         - 4001:4001
@@ -16,7 +17,7 @@ services:
         - ASPNETCORE_URLS=http://+:4000;http://+:4001;http://+:9100
         - ASPNETCORE_ENVIRONMENT=Development
 
-  myteamshub.db:
+  myteamshub.mssql.server:
     container_name: myteamshub.mssql.server  
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: always
@@ -26,3 +27,21 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "YourStrong!Password123"
       MSSQL_PID: "Express"
+      MSSQL_TLS_CERTIFICATE: "/var/opt/mssql/cert/mssql.crt"
+      MSSQL_TLS_KEY: "/var/opt/mssql/cert/mssql.key"
+      MSSQL_TLS_CA: "/var/opt/mssql/cert/mssql.crt"
+    volumes:
+      - ./infra/mssql/mssql.crt:/var/opt/mssql/cert/mssql.crt
+      - ./infra/mssql/mssql.key:/var/opt/mssql/cert/mssql.key
+
+  myteamshub.postgresql.server:
+    container_name: myteamshub.postgresql.server
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./infra/postgresql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

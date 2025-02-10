@@ -25,10 +25,10 @@ public static class DependencyInjection
         return services;
     }
 
-    public static void TryMigrate(this IServiceProvider serviceProvider)
+    public static void ApplyMigrations(this IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
-        var database = serviceProvider.GetRequiredService<OrganizationDbContext>();
+        var database = scope.ServiceProvider.GetRequiredService<OrganizationDbContext>();
 
         database.Database.Migrate();
     }

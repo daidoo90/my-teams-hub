@@ -17,7 +17,7 @@ internal static class WebApplicationConfiguration
 
         app.MapHealthChecks();
 
-        app.Services.TryMigrate();
+        app.Services.ApplyMigrations();
 
         return app;
     }
