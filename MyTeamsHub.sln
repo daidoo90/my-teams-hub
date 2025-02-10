@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Core.Domain", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Core.Application", "src\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj", "{D237F319-8FA7-4B7D-A2B0-19BCE3CC2084}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Infrastructure", "src\MyTeamsHub.Infrastructure\MyTeamsHub.Infrastructure.csproj", "{BBA30D8A-9829-4823-9A31-D615A82F9D53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{D237F319-8FA7-4B7D-A2B0-19BCE3CC2084}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D237F319-8FA7-4B7D-A2B0-19BCE3CC2084}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D237F319-8FA7-4B7D-A2B0-19BCE3CC2084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA30D8A-9829-4823-9A31-D615A82F9D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA30D8A-9829-4823-9A31-D615A82F9D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA30D8A-9829-4823-9A31-D615A82F9D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA30D8A-9829-4823-9A31-D615A82F9D53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +118,7 @@ Global
 		{9B3CD855-FCF1-4E61-B938-6475E51D75A1} = {037AA236-2830-4930-9E9E-6E8DF4D504F2}
 		{B1028818-FC59-4EDD-A209-B7743288F96A} = {FF30B154-12CE-496A-9DF7-0AEBA59CCD6A}
 		{D237F319-8FA7-4B7D-A2B0-19BCE3CC2084} = {FF30B154-12CE-496A-9DF7-0AEBA59CCD6A}
+		{BBA30D8A-9829-4823-9A31-D615A82F9D53} = {494E1CB4-2868-4632-80D4-603C97BD1548}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCF1F07C-3AD7-48AF-88F4-9FD0A5A3D565}

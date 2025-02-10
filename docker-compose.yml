@@ -45,3 +45,9 @@ services:
       - ./infra/postgresql:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+  myteamshub.redis.cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
