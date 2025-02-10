@@ -7,16 +7,17 @@ services:
       dockerfile: src/MyTeamsHub.Organization.API/Dockerfile
     restart: always
     depends_on: 
-        - myteamshub.db
+        - myteamshub.mssql.server
     ports:
         - 4000:4000
         - 4001:4001
         - 9100:9100
     environment:
         - ASPNETCORE_URLS=http://+:4000;http://+:4001;http://+:9100
+        - ASPNETCORE_ENVIRONMENT=Development
 
   myteamshub.db:
-    container_name: myteamshub.db  
+    container_name: myteamshub.mssql.server  
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: always
     ports:

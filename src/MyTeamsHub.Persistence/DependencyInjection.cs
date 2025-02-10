@@ -25,6 +25,14 @@ public static class DependencyInjection
         return services;
     }
 
+    public static void TryMigrate(this IServiceProvider serviceProvider)
+    {
+        using var scope = serviceProvider.CreateScope();
+        var database = serviceProvider.GetRequiredService<OrganizationDbContext>();
+
+        database.Database.Migrate();
+    }
+
     private static IServiceCollection AddDbContext(this IServiceCollection services)
     {
         var databaseOptions = services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseOptions>>().Value.Validate();

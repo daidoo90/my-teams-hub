@@ -1,4 +1,4 @@
-﻿using HealthChecks.UI.Client;
+﻿using MyTeamsHub.Persistence;
 
 namespace MyTeamsHub.Organization.API.Configurations;
 
@@ -15,10 +15,9 @@ internal static class WebApplicationConfiguration
 
         app.MapControllers();
 
-        app.MapHealthChecks("health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
-        {
-            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-        });
+        app.MapHealthChecks();
+
+        app.Services.TryMigrate();
 
         return app;
     }
