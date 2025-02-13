@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myteamshub-mssql-server-deployment
+spec:
+  replicas: 1  # Usually, only one instance is needed for SQL Server
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+        - name: myteamshub-mssql-server
+          image: mcr.microsoft.com/mssql/server:2022-latest
+          env:
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql-secret  # Ensure this secret is created in Kubernetes
+                  key: SA_PASSWORD  # Use the key 'SA_PASSWORD' from the secret
+            - name: ACCEPT_EULA
+              value: "Y"
+          ports:
+            - containerPort: 1433  # MSSQL default port

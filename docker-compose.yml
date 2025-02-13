@@ -41,12 +41,13 @@ services:
       - POSTGRES_DB=test
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    volumes:
-      - ./infra/postgresql:/var/lib/postgresql/data
+   # volumes:
+     # - ./infra/postgresql/temp_pg_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   myteamshub.redis.cache:
+    container_name: myteamshub.redis.cache
     image: redis:latest
     restart: always
     ports:

@@ -13,7 +13,7 @@ namespace MyTeamsHub.Persistence;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    public static IServiceCollection AddPersistanceInfrastructure(this IServiceCollection services)
     {
         services.AddScoped<IOrganizationsRepository, OrganizationsRepository>();
         services.AddDbContext();

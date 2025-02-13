@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-teams-hub-api
+  labels:
+    app: my-teams-hub-api
+spec:
+  replicas: 3  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: my-teams-hub-api
+  template:
+    metadata:
+      labels:
+        app: my-teams-hub-api
+    spec:
+      containers:
+      - name: my-teams-hub-api
+        image: localhost:5000/my-teams-hub-api:latest  # Specify the image you created
+        ports:
+        - containerPort: 4000  # The port your API is listening on
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"  # Set your environment variable if needed
+        resources:
+          requests:
+            memory: "512Mi"  # Adjust the resources as needed
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+      imagePullSecrets:
+        - name: my-registry-secret

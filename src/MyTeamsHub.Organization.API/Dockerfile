@@ -12,6 +12,8 @@ EXPOSE 9100
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+COPY ./Directory.Build.props ./
 COPY ["src/MyTeamsHub.Organization.API/MyTeamsHub.Organization.API.csproj", "src/MyTeamsHub.Organization.API/"]
 COPY ["src/MyTeamsHub.Core.Domain/MyTeamsHub.Core.Domain.csproj", "src/MyTeamsHub.Core.Domain/"]
 COPY ["src/MyTeamsHub.Core.Application/MyTeamsHub.Core.Application.csproj", "src/MyTeamsHub.Core.Application/"]

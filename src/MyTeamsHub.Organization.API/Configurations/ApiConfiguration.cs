@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Versioning;
 
 using MyTeamsHub.Core.Application;
+using MyTeamsHub.Infrastructure;
 using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence;
 using MyTeamsHub.Persistence.Registers;
@@ -17,7 +18,8 @@ internal static class ApiConfiguration
         builder.Services
             .AddAPIServices()
             .AddApplication()
-            .AddInfrastructure()
+            .AddInfrastructure(builder.Configuration)
+            .AddPersistanceInfrastructure()
             .AddHealthChecks()
             .AddSqlServer(builder.Configuration.GetDatabaseConnectionString());
 

@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Core.Domain\MyTeamsHub.Core.Domain.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Infrastructure\MyTeamsHub.Infrastructure.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Organization.API.Models\MyTeamsHub.Organization.API.Models.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence\MyTeamsHub.Persistence.csproj" />
   </ItemGroup>
