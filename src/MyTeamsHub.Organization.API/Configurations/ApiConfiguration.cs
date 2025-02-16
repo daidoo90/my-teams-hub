@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 
 using MyTeamsHub.Core.Application;
 using MyTeamsHub.Infrastructure;
+using MyTeamsHub.Infrastructure.Messaging;
 using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence;
 using MyTeamsHub.Persistence.Registers;
@@ -85,7 +86,7 @@ internal static class ApiConfiguration
         // services.ConfigureLoggingOptions(configuration);
         // services.ConfigureHangfireOptions(configuration);
         services.ConfigureDatabaseOptions(configuration);
-        // services.ConfigureMessagingOptions(configuration);
+        services.ConfigureRabbitMQSettings(configuration);
         // services.ConfigureApplicationInsightsOptions(configuration);
     }
 }

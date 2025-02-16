@@ -52,3 +52,13 @@ services:
     restart: always
     ports:
       - "6379:6379"
+
+  myteamshub.rabbitmq:
+    container_name: myteamshub.rabbitmq
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
