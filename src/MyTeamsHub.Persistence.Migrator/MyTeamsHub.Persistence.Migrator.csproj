@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\MyTeamsHub.Persistence.Models\MyTeamsHub.Persistence.Models.csproj" />
-    <ProjectReference Include="..\MyTeamsHub.Persistence\MyTeamsHub.Persistence.csproj" />
-  </ItemGroup>
-
-</Project>
