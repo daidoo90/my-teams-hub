@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Infrastructure.Services;
+﻿namespace MyTeamsHub.Core.Application.Interfaces;
 
 public interface ICryptoService
 {

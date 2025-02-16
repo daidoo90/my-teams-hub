@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj" />
+  </ItemGroup>
+
 </Project>

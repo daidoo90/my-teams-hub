@@ -1,7 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using MyTeamsHub.Infrastructure.Services;
+using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Infrastructure.Cache;
+using MyTeamsHub.Infrastructure.Crypto;
+
+using StackExchange.Redis;
 
 namespace MyTeamsHub.Infrastructure;
 
@@ -13,10 +17,30 @@ public static class DependencyInjection
 
         //var cacheConnectionString = configuration.GetRequiredSection(nameof(ConnectionStrings)).GetValue<string>(nameof(ConnectionStrings.Cache))!;
 
-        services.AddStackExchangeRedisCache(options => options.Configuration = "myteamshub.redis.cache:6379");
+        services
+            .AddMemoryCache()
+            .AddRedisCache(configuration);
 
         return services;
     }
+
+    private static IServiceCollection AddMemoryCache(this IServiceCollection services)
+        => services.AddSingleton<IMemoryCacheService, MemoryCacheService>();
+
+    private static IServiceCollection AddRedisCache(this IServiceCollection services, IConfiguration configuration)
+        => services
+        .AddStackExchangeRedisCache(options => options.Configuration = "myteamshub.redis.cache:6379")
+        .AddSingleton<IConnectionMultiplexer>(sp =>
+        {
+            var configuration = ConfigurationOptions.Parse("myteamshub.redis.cache:6379");
+            return ConnectionMultiplexer.Connect(configuration);
+        })
+        .AddSingleton(sp =>
+        {
+            var multiplexer = sp.GetRequiredService<IConnectionMultiplexer>();
+            return multiplexer.GetDatabase();
+        })
+        .AddSingleton<IRedisCacheService, RedisCacheService>();
 }
 
 internal sealed class ConnectionStrings

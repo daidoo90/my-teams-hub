@@ -12,5 +12,9 @@
     <ProjectReference Include="..\MyTeamsHub.Persistence.Core\MyTeamsHub.Persistence.Core.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence.Models\MyTeamsHub.Persistence.Models.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+  </ItemGroup>
 
 </Project>

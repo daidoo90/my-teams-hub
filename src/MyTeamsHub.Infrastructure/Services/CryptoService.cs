@@ -2,7 +2,9 @@
 
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace MyTeamsHub.Infrastructure.Services;
+using MyTeamsHub.Core.Application.Interfaces;
+
+namespace MyTeamsHub.Infrastructure.Crypto;
 
 public class CryptoService : ICryptoService
 {
