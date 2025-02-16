@@ -12,18 +12,16 @@ public class RedisCacheService : IRedisCacheService
 {
     private readonly IDistributedCache _cache;
     private readonly IDatabase _database;
-    private readonly CacheEntryOptions _defaultCacheEntryOptions = new()
-    {
-        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
-        SlidingExpiration = TimeSpan.FromMinutes(10)
-    };
+    private readonly CacheEntryOptions _defaultCacheEntryOptions;
 
     public RedisCacheService(
         IDistributedCache distributedCache,
-        IDatabase database)
+        IDatabase database,
+        CacheEntryOptions defaultCacheEntryOptions)
     {
         _cache = distributedCache;
         _database = database;
+        _defaultCacheEntryOptions = defaultCacheEntryOptions;
     }
 
     /// <inheritdoc/>

@@ -1,5 +1,5 @@
 ﻿namespace MyTeamsHub.Core.Application.Interfaces;
 
-public interface IRedisCacheService : ICacheService
+public interface IRedisCacheService : IBaseCacheService
 {
 }

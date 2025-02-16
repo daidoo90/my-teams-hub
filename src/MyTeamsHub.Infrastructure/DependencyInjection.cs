@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 using MyTeamsHub.Core.Application.Interfaces;
 using MyTeamsHub.Infrastructure.Cache;
@@ -17,7 +18,24 @@ public static class DependencyInjection
 
         //var cacheConnectionString = configuration.GetRequiredSection(nameof(ConnectionStrings)).GetValue<string>(nameof(ConnectionStrings.Cache))!;
 
+        services.AddCache(configuration);
+
+        return services;
+    }
+
+    private static IServiceCollection AddCache(this IServiceCollection services, IConfiguration configuration)
+    {
+        var defaultCacheEntryOptions = services
+            .BuildServiceProvider()
+            .GetRequiredService<IOptions<CacheEntryOptions>>()
+            .Value ?? new CacheEntryOptions()
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
+                SlidingExpiration = TimeSpan.FromMinutes(10)
+            };
+
         services
+            .AddSingleton(defaultCacheEntryOptions)
             .AddMemoryCache()
             .AddRedisCache(configuration);
 

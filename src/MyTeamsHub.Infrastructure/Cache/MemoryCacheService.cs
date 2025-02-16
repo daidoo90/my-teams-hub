@@ -7,15 +7,14 @@ namespace MyTeamsHub.Infrastructure.Cache;
 public class MemoryCacheService : IMemoryCacheService
 {
     private readonly IMemoryCache _cache;
-    private readonly CacheEntryOptions _defaultCacheEntryOptions = new()
-    {
-        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
-        SlidingExpiration = TimeSpan.FromMinutes(10)
-    };
+    private readonly CacheEntryOptions _defaultCacheEntryOptions;
 
-    public MemoryCacheService(IMemoryCache inMemoryCache)
+    public MemoryCacheService(
+        IMemoryCache inMemoryCache,
+        CacheEntryOptions defaultCacheEntryOptions)
     {
         _cache = inMemoryCache;
+        _defaultCacheEntryOptions = defaultCacheEntryOptions;
     }
 
     /// <inheritdoc/>
