@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 
-using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Core.Application.Interfaces.Shared;
 
 namespace MyTeamsHub.Infrastructure.Messaging;
 

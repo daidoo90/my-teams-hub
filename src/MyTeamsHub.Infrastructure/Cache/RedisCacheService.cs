@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.Caching.Distributed;
 
-using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Core.Application.Interfaces.Shared;
 
 using StackExchange.Redis;
 

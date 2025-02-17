@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Core.Application.Interfaces;
+﻿namespace MyTeamsHub.Core.Application.Interfaces.Shared;
 
 /// <summary>
 /// Operations for working with cache

@@ -1,7 +1,8 @@
-﻿using MyTeamsHub.Persistence.Core.Context;
+﻿using MyTeamsHub.Core.Application.Interfaces.Repositories;
+using MyTeamsHub.Persistence.Core.Context;
 using MyTeamsHub.Persistence.Core.Entities;
 
-namespace MyTeamsHub.Persistence.Core.Repository;
+namespace MyTeamsHub.Persistence.Repositories;
 
 public class EfDeletableRepository<TEntity> : EfRepository<TEntity>, IEfDeletableRepository<TEntity>
         where TEntity : class, IDeletableEntity

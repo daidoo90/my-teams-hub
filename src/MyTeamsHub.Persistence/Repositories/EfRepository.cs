@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyTeamsHub.Persistence.Core.Context;
-using MyTeamsHub.Persistence.Core.Entities;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace MyTeamsHub.Persistence.Core.Repository;
+using Microsoft.EntityFrameworkCore;
+
+using MyTeamsHub.Core.Application.Interfaces.Repositories;
+using MyTeamsHub.Persistence.Core.Context;
+
+using MyTeamsHub.Persistence.Core.Entities;
+
+namespace MyTeamsHub.Persistence.Repositories;
 
 public class EfRepository<TEntity> : IEfRepository<TEntity>
         where TEntity : class

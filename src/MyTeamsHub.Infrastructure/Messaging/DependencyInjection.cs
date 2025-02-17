@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Core.Application.Interfaces.Shared;
 using MyTeamsHub.Core.Application.Team.Create;
 
 namespace MyTeamsHub.Infrastructure.Messaging;

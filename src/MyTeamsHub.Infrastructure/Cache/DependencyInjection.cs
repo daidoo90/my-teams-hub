@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Core.Application.Interfaces.Shared;
 
 using StackExchange.Redis;
 

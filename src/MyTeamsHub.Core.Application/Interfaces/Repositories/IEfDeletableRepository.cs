@@ -1,6 +1,6 @@
 ﻿using MyTeamsHub.Persistence.Core.Entities;
 
-namespace MyTeamsHub.Persistence.Core.Repository;
+namespace MyTeamsHub.Core.Application.Interfaces.Repositories;
 
 public interface IEfDeletableRepository<TEntity> : IEfRepository<TEntity>
         where TEntity : class, IDeletableEntity

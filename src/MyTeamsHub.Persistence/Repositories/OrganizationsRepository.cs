@@ -1,6 +1,5 @@
 ﻿using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Persistence.Core.Context;
-using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Organizations;
 
 namespace MyTeamsHub.Persistence.Repositories;

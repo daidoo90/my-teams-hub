@@ -1,5 +1,5 @@
 ﻿using MyTeamsHub.Core.Application.Common;
-using MyTeamsHub.Persistence.Core.Repository;
+using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Persistence.Models.Types;
 using MyTeamsHub.Persistence.Models.Users;
 

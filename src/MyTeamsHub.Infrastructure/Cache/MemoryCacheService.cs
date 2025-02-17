@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 
-using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Core.Application.Interfaces.Shared;
 
 namespace MyTeamsHub.Infrastructure.Cache;
 

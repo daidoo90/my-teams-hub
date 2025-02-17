@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace MyTeamsHub.Persistence.Core.Repository;
+namespace MyTeamsHub.Core.Application.Interfaces.Repositories;
 
 public interface IEfRepository<TEntity>
         where TEntity : class

@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
+using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Core.Application.Organizations;
 using MyTeamsHub.Persistence.Context;
 using MyTeamsHub.Persistence.Core.Context;
 using MyTeamsHub.Persistence.Core.Options;
-using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Repositories;
 
 namespace MyTeamsHub.Persistence;

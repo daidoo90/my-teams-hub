@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using MyTeamsHub.Core.Application.Interfaces;
+using MyTeamsHub.Core.Application.Interfaces.Shared;
 using MyTeamsHub.Infrastructure.Cache;
-using MyTeamsHub.Infrastructure.Crypto;
 using MyTeamsHub.Infrastructure.Messaging;
+using MyTeamsHub.Infrastructure.Services.Shared;
 
 namespace MyTeamsHub.Infrastructure;
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using MyTeamsHub.Core.Application.Common;
+using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Core.Domain.Users;
-using MyTeamsHub.Persistence.Core.Repository;
 using MyTeamsHub.Persistence.Models.Users;
 
 namespace MyTeamsHub.Core.Application.User.GetAll;

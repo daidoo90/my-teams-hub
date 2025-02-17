@@ -1,6 +1,6 @@
 ﻿
 using MyTeamsHub.Core.Application.Common;
-using MyTeamsHub.Persistence.Core.Repository;
+using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Persistence.Models.Organizations;
 
 namespace MyTeamsHub.Domain.Services.Team.Delete;
