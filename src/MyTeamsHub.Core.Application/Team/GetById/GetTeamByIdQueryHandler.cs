@@ -2,7 +2,7 @@
 
 using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Core.Application.Interfaces.Repositories;
-using MyTeamsHub.Persistence.Models.Organizations;
+using MyTeamsHub.Core.Domain.Organizations;
 
 namespace MyTeamsHub.Domain.Services.Team.GetById;
 

@@ -1,6 +1,6 @@
-﻿using MyTeamsHub.Persistence.Core.Entities;
+﻿using MyTeamsHub.Core.Domain.Shared;
 
-namespace MyTeamsHub.Persistence.Models.Organizations;
+namespace MyTeamsHub.Core.Domain.Organizations;
 
 public class TeamEntity : IAuditableEntity, IDeletableEntity
 {

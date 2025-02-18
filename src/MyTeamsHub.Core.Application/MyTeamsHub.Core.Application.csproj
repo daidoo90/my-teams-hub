@@ -4,13 +4,12 @@
 		<PackageReference Include="MediatR" />
 		<PackageReference Include="MediatR.Contracts" />
 		<PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" />
 	</ItemGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\MyTeamsHub.Core.Domain\MyTeamsHub.Core.Domain.csproj" />
-    <ProjectReference Include="..\MyTeamsHub.Persistence.Core\MyTeamsHub.Persistence.Core.csproj" />
-    <ProjectReference Include="..\MyTeamsHub.Persistence.Models\MyTeamsHub.Persistence.Models.csproj" />
   </ItemGroup>
 
 </Project>

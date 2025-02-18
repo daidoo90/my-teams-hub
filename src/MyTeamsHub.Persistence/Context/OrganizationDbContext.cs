@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
+using MyTeamsHub.Core.Domain.Organizations;
+using MyTeamsHub.Core.Domain.Users;
 using MyTeamsHub.Persistence.Configurators;
 using MyTeamsHub.Persistence.Core.Context;
 using MyTeamsHub.Persistence.Core.Extensions;
-using MyTeamsHub.Persistence.Models.Organizations;
-using MyTeamsHub.Persistence.Models.Users;
 
 namespace MyTeamsHub.Persistence.Context;
 

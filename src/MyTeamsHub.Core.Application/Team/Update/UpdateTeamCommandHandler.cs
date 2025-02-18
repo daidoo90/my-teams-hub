@@ -2,8 +2,8 @@
 
 using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Core.Application.Interfaces.Repositories;
-using MyTeamsHub.Persistence.Models.Organizations;
-using MyTeamsHub.Persistence.Models.Users;
+using MyTeamsHub.Core.Domain.Organizations;
+using MyTeamsHub.Core.Domain.Users;
 
 namespace MyTeamsHub.Domain.Services.Team.Update;
 
@@ -51,8 +51,8 @@ public class UpdateTeamCommandHandler(
             .Where(u => !u.Item1.HasValue || u.Item1 == Guid.Empty)
             .Select(u => new UserEntity
             {
-                UserStatus = Persistence.Models.Types.UserStatus.Invited,
-                UserType = Persistence.Models.Types.UserType.ClientUser,
+                UserStatus = UserStatus.Invited,
+                UserType = UserType.ClientUser,
                 Email = u.Item2
             })
             .ToArray();
@@ -68,7 +68,7 @@ public class UpdateTeamCommandHandler(
                 User = u,
                 MemberType = request.Users.Single(user =>
                                         (user.Item1.HasValue && user.Item1.Value == u.UserId) ||
-                                        (user.Item2.Equals(u.Email))).Item3 ? Persistence.Models.Types.RoleType.TeamLead : Persistence.Models.Types.RoleType.RegularMember
+                                        (user.Item2.Equals(u.Email))).Item3 ? RoleType.TeamLead : RoleType.RegularMember
             })
             .ToList();
 
@@ -77,7 +77,7 @@ public class UpdateTeamCommandHandler(
             .Select(u => new TeamMemberEntity
             {
                 UserId = u.Item1!.Value,
-                MemberType = u.Item3 ? Persistence.Models.Types.RoleType.TeamLead : Persistence.Models.Types.RoleType.RegularMember
+                MemberType = u.Item3 ? RoleType.TeamLead : RoleType.RegularMember
             })
             .ToList());
 

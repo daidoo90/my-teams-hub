@@ -1,8 +1,7 @@
 ﻿using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Core.Application.Interfaces.Shared;
-using MyTeamsHub.Persistence.Models.Types;
-using MyTeamsHub.Persistence.Models.Users;
+using MyTeamsHub.Core.Domain.Users;
 
 namespace MyTeamsHub.Core.Application.User.Create;
 

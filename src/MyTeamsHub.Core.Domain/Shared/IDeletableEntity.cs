@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Persistence.Core.Entities;
+﻿namespace MyTeamsHub.Core.Domain.Shared;
 
 /// <summary>
 /// Provides properties that describes whether this instance is deleted and when.

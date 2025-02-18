@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Persistence.Core.Entities;
+﻿namespace MyTeamsHub.Core.Domain.Shared;
 
 public class DeletableEntity : IDeletableEntity
 {

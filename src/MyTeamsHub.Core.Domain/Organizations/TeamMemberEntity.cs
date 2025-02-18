@@ -1,7 +1,6 @@
-﻿using MyTeamsHub.Persistence.Models.Types;
-using MyTeamsHub.Persistence.Models.Users;
+﻿using MyTeamsHub.Core.Domain.Users;
 
-namespace MyTeamsHub.Persistence.Models.Organizations;
+namespace MyTeamsHub.Core.Domain.Organizations;
 
 public class TeamMemberEntity
 {

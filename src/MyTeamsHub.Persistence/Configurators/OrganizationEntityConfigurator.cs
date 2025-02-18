@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
+
+using MyTeamsHub.Core.Domain.Organizations;
 using MyTeamsHub.Persistence.Constants;
-using MyTeamsHub.Persistence.Models.Organizations;
 
 namespace MyTeamsHub.Persistence.Configurators;
 

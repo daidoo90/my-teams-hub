@@ -16,7 +16,6 @@ using MyTeamsHub.Organization.API.Models.Common;
 using MyTeamsHub.Organization.API.Models.Common.Base;
 using MyTeamsHub.Organization.API.Models.V1.Users;
 using MyTeamsHub.Organization.API.Services;
-using MyTeamsHub.Persistence.Models.Types;
 
 using Swashbuckle.AspNetCore.Annotations;
 

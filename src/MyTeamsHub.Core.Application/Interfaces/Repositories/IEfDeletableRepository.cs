@@ -1,4 +1,4 @@
-﻿using MyTeamsHub.Persistence.Core.Entities;
+﻿using MyTeamsHub.Core.Domain.Shared;
 
 namespace MyTeamsHub.Core.Application.Interfaces.Repositories;
 

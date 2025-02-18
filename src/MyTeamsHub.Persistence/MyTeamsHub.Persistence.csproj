@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MyTeamsHub.Core.Application\MyTeamsHub.Core.Application.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence.Core\MyTeamsHub.Persistence.Core.csproj" />
-    <ProjectReference Include="..\MyTeamsHub.Persistence.Models\MyTeamsHub.Persistence.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
