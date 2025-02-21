@@ -7,6 +7,7 @@ using MyTeamsHub.Infrastructure.Messaging;
 using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Persistence;
 using MyTeamsHub.Persistence.Registers;
+using MyTeamsHub.SignalR;
 
 namespace MyTeamsHub.Organization.API.Configurations;
 
@@ -37,7 +38,8 @@ internal static class ApiConfiguration
             .AddVersioning()
             .AddSwagger()
             .ConfigureCors()
-            .AddResponseCompression(opts => opts.EnableForHttps = true);
+            .AddResponseCompression(opts => opts.EnableForHttps = true)
+            .AddSignalRServices();
 
         services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
 
@@ -68,11 +70,11 @@ internal static class ApiConfiguration
     {
         return services.AddCors(options =>
         {
-            options.AddPolicy("CostPolicy",
-                builder =>
-                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .WithMethods(HttpMethods.Get, HttpMethods.Post, HttpMethods.Put, HttpMethods.Patch, HttpMethods.Options));
+            options.AddPolicy("AllowSpecificOrigin", builder =>
+            builder.SetIsOriginAllowed(origin => string.IsNullOrEmpty(origin) || origin.StartsWith("http://localhost:4001") || origin.StartsWith("http://localhost:4000"))
+                       .AllowCredentials()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod());
         });
     }
 

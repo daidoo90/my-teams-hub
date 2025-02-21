@@ -30,6 +30,7 @@
     <ProjectReference Include="..\MyTeamsHub.Infrastructure\MyTeamsHub.Infrastructure.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Organization.API.Models\MyTeamsHub.Organization.API.Models.csproj" />
     <ProjectReference Include="..\MyTeamsHub.Persistence\MyTeamsHub.Persistence.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.SignalR\MyTeamsHub.SignalR.csproj" />
   </ItemGroup>
 
 </Project>
