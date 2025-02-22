@@ -15,3 +15,6 @@ This repository provides a template for building application using Clean Vertica
 - Unit Tests using MoQ, InMemory database
 - Integration tests using Test Containers library
 - Dependencies tests
+
+# TODO
+- Health Check on whole infrastructure
