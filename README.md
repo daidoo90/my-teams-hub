@@ -11,7 +11,7 @@ This repository provides a template for building application using Clean Vertica
 - Entity Framework Core with MSSQL & PostgreSQL databases
 - Centralized Package Management
 - Containerized .NET Core API along with its dependencies(MSSQL, PostgreSQL, RabbitMQ, Redis etc.)
-- EditorConfig file - defined code formatting rules
+- Coding conventions & static code analysis
 - Unit Tests using MoQ, InMemory database
 - Integration tests using Test Containers library
 - Dependencies tests
