@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NetArchTest.Rules" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.Application\MyTeamsHub.Organization.Application.csproj" />
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.Domain\MyTeamsHub.Organization.Domain.csproj" />
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.Infrastructure\MyTeamsHub.Organization.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.Notifications\MyTeamsHub.Organization.Notifications.csproj" />
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.Persistence\MyTeamsHub.Organization.Persistence.csproj" />
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.API\MyTeamsHub.Organization.API.csproj" />
+		<ProjectReference Include="..\..\src\MyTeamsHub.Organization.API.Models\MyTeamsHub.Organization.API.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Infrastructure\" />
+	  <Folder Include="Domain\" />
+	</ItemGroup>
+
+</Project>

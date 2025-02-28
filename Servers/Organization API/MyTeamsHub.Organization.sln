@@ -44,6 +44,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Organization.Per
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Organization.Notifications", "src\MyTeamsHub.Organization.Notifications\MyTeamsHub.Organization.Notifications.csproj", "{5B722421-0164-4B71-B9D8-F2BAB91E28EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{04F5CD3F-5BCC-48D8-B482-D3EC76ECFD60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Organization.Domain.UnitTests", "tests\MyTeamsHub.Organization.Domain.UnitTests\MyTeamsHub.Organization.Domain.UnitTests.csproj", "{3AC0047D-E6F2-4B26-A7D4-E9411077AD73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Organization.IntegrationTests", "tests\MyTeamsHub.Organization.IntegrationTests\MyTeamsHub.Organization.IntegrationTests.csproj", "{26040448-2EDF-44A5-B9C7-723BCFA1667B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.Organization.ArchitectureTests", "tests\MyTeamsHub.Organization.ArchitecturalTests\MyTeamsHub.Organization.ArchitectureTests.csproj", "{4D5B5579-3C6A-4634-BB22-2025DAF15E85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +106,18 @@ Global
 		{5B722421-0164-4B71-B9D8-F2BAB91E28EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B722421-0164-4B71-B9D8-F2BAB91E28EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B722421-0164-4B71-B9D8-F2BAB91E28EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC0047D-E6F2-4B26-A7D4-E9411077AD73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC0047D-E6F2-4B26-A7D4-E9411077AD73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC0047D-E6F2-4B26-A7D4-E9411077AD73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC0047D-E6F2-4B26-A7D4-E9411077AD73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26040448-2EDF-44A5-B9C7-723BCFA1667B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26040448-2EDF-44A5-B9C7-723BCFA1667B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26040448-2EDF-44A5-B9C7-723BCFA1667B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26040448-2EDF-44A5-B9C7-723BCFA1667B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D5B5579-3C6A-4634-BB22-2025DAF15E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D5B5579-3C6A-4634-BB22-2025DAF15E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D5B5579-3C6A-4634-BB22-2025DAF15E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D5B5579-3C6A-4634-BB22-2025DAF15E85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,5 +134,8 @@ Global
 		{DF97DB07-12C3-43C9-9D0E-61AE6ACD20E0} = {ED22831B-C381-45CC-B976-955CA277B476}
 		{37FFFEE9-77A6-4123-BBF5-2B8819C3EBD1} = {ED22831B-C381-45CC-B976-955CA277B476}
 		{5B722421-0164-4B71-B9D8-F2BAB91E28EA} = {09A6F34F-D84C-4332-913E-AD22715A6A24}
+		{3AC0047D-E6F2-4B26-A7D4-E9411077AD73} = {04F5CD3F-5BCC-48D8-B482-D3EC76ECFD60}
+		{26040448-2EDF-44A5-B9C7-723BCFA1667B} = {04F5CD3F-5BCC-48D8-B482-D3EC76ECFD60}
+		{4D5B5579-3C6A-4634-BB22-2025DAF15E85} = {04F5CD3F-5BCC-48D8-B482-D3EC76ECFD60}
 	EndGlobalSection
 EndGlobal
