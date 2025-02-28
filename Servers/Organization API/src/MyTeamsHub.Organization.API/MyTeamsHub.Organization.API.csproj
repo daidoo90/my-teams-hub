@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <UserSecretsId>a37221eb-79b2-4696-8be0-0c8adc79a0ae</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyTeamsHub.Organization.API.Models\MyTeamsHub.Organization.API.Models.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Organization.Application\MyTeamsHub.Organization.Application.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Organization.Domain\MyTeamsHub.Organization.Domain.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Organization.Infrastructure\MyTeamsHub.Organization.Infrastructure.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Organization.Notifications\MyTeamsHub.Organization.Notifications.csproj" />
+    <ProjectReference Include="..\MyTeamsHub.Organization.Persistence\MyTeamsHub.Organization.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

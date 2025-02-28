@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "MyTeamsHub.CreateNewTeam.Listener": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

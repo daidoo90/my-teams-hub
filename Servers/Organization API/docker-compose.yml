@@ -1,0 +1,92 @@
+services:
+
+  myteamshub.organization.api:
+    container_name: myteamshub.organization.api
+    image: ${DOCKER_REGISTRY-}myteamshuborganizationapi
+    build:
+      context: .
+      dockerfile: src/MyTeamsHub.Organization.API/Dockerfile
+    restart: always
+    depends_on: 
+        - myteamshub.mssql.server
+        - myteamshub.postgresql.server
+    ports:
+        - 4000:4000
+        - 4001:4001
+        - 9100:9100
+    environment:
+        - ASPNETCORE_URLS=http://+:4000;http://+:4001;http://+:9100
+        - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - myteamshub-network
+
+  myteamshub.mssql.server:
+    container_name: myteamshub.mssql.server  
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong!Password123"
+      MSSQL_PID: "Express"
+      MSSQL_TLS_CERTIFICATE: "/var/opt/mssql/cert/mssql.crt"
+      MSSQL_TLS_KEY: "/var/opt/mssql/cert/mssql.key"
+      MSSQL_TLS_CA: "/var/opt/mssql/cert/mssql.crt"
+    # volumes:
+    #   - ./infra/mssql/mssql.crt:/var/opt/mssql/cert/mssql.crt
+    #   - ./infra/mssql/mssql.key:/var/opt/mssql/cert/mssql.key
+    networks:
+      - myteamshub-network
+
+  myteamshub.postgresql.server:
+    container_name: myteamshub.postgresql.server
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    # volumes:
+    #   - ./infra/postgresql/temp_pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - myteamshub-network
+
+  myteamshub.redis.cache:
+    container_name: myteamshub.redis.cache
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - myteamshub-network
+
+  myteamshub.rabbitmq:
+    container_name: myteamshub.rabbitmq
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - myteamshub-network
+
+  # create-new-team-listener:
+  #   build:
+  #     context: .
+  #     dockerfile: src/MyTeamsHub.CreateNewTeam.Listener/Dockerfile
+  #   container_name: myteamshub-create-new-team-listener
+  #   depends_on:
+  #     - myteamshub.rabbitmq
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #   networks:
+  #     - myteamshub-network
+  #   restart: always
+
+networks:
+  myteamshub-network:
+    driver: bridge
