@@ -46,10 +46,10 @@ public static class DependencyInjection
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host("localhost", "/", h =>
+                    cfg.Host(settings.Host, "/", h =>
                     {
-                        h.Username("guest");
-                        h.Password("guest");
+                        h.Username(settings.Username);
+                        h.Password(settings.Password);
                     });
 
                     cfg.ReceiveEndpoint("create-new-team-queue", e =>

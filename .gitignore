@@ -362,4 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-infra/postgresql/temp_pg_data/*
+# Ignoring Volumes from PostgreSQL
+/Servers/Organization API/infra/postgresql/temp_pg_data
