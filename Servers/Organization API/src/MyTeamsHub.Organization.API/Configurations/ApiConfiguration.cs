@@ -5,7 +5,7 @@ using MyTeamsHub.Core.Application;
 using MyTeamsHub.Infrastructure;
 using MyTeamsHub.Organization.API.Services;
 using MyTeamsHub.Organization.Notifications;
-using MyTeamsHub.Persistence;
+using MyTeamsHub.Organization.Persistence;
 using MyTeamsHub.Persistence.Registers;
 
 namespace MyTeamsHub.Organization.API.Configurations;

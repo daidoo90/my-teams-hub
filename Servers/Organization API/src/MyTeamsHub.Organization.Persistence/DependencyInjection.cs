@@ -4,12 +4,12 @@ using Microsoft.Extensions.Options;
 
 using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Core.Application.Organizations;
+using MyTeamsHub.Organization.Persistence.Context;
+using MyTeamsHub.Organization.Persistence.Options;
 using MyTeamsHub.Persistence.Context;
-using MyTeamsHub.Persistence.Core.Context;
-using MyTeamsHub.Persistence.Core.Options;
 using MyTeamsHub.Persistence.Repositories;
 
-namespace MyTeamsHub.Persistence;
+namespace MyTeamsHub.Organization.Persistence;
 
 public static class DependencyInjection
 {

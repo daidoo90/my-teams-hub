@@ -2,9 +2,9 @@
 
 using MyTeamsHub.Core.Domain.Organizations;
 using MyTeamsHub.Core.Domain.Users;
+using MyTeamsHub.Organization.Persistence.Context;
+using MyTeamsHub.Organization.Persistence.Extensions;
 using MyTeamsHub.Persistence.Configurators;
-using MyTeamsHub.Persistence.Core.Context;
-using MyTeamsHub.Persistence.Core.Extensions;
 
 namespace MyTeamsHub.Persistence.Context;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace MyTeamsHub.Persistence.Core.Context;
+namespace MyTeamsHub.Organization.Persistence.Context;
 
 public interface IDbContext
 {

@@ -1,4 +1,4 @@
-﻿namespace MyTeamsHub.Persistence.Core.Options;
+﻿namespace MyTeamsHub.Organization.Persistence.Options;
 
 public class DatabaseOptions
 {

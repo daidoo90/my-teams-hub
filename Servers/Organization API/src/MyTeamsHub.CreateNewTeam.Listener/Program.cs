@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 using MyTeamsHub.Core.Application;
 using MyTeamsHub.Infrastructure;
-using MyTeamsHub.Persistence;
+using MyTeamsHub.Organization.Persistence;
 using MyTeamsHub.Persistence.Registers;
 
 var host = Host.CreateDefaultBuilder()

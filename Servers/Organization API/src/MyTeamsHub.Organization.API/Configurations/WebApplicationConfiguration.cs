@@ -1,4 +1,4 @@
-﻿using MyTeamsHub.Persistence;
+﻿using MyTeamsHub.Organization.Persistence;
 using MyTeamsHub.SignalR.Users.Hub;
 
 namespace MyTeamsHub.Organization.API.Configurations;

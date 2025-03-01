@@ -1,8 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using MyTeamsHub.Persistence.Core.Exceptions;
 
-namespace MyTeamsHub.Persistence.Core.Extensions;
+using MyTeamsHub.Organization.Persistence.Exceptions;
+
+namespace MyTeamsHub.Organization.Persistence.Extensions;
 
 public static class DbUpdateExceptionExtensions
 {

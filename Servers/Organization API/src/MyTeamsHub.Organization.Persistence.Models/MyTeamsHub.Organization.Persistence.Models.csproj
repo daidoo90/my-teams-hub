@@ -1,7 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\MyTeamsHub.Organization.Persistence.Core\MyTeamsHub.Organization.Persistence.Core.csproj" />
-  </ItemGroup>
-
-</Project>

@@ -1,6 +1,6 @@
 ﻿using MyTeamsHub.Core.Application.Interfaces.Repositories;
 using MyTeamsHub.Core.Domain.Shared;
-using MyTeamsHub.Persistence.Core.Context;
+using MyTeamsHub.Organization.Persistence.Context;
 
 namespace MyTeamsHub.Persistence.Repositories;
 

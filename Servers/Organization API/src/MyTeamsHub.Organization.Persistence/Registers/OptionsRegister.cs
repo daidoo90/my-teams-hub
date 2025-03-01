@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using MyTeamsHub.Persistence.Core.Options;
+using MyTeamsHub.Organization.Persistence.Options;
 
 namespace MyTeamsHub.Persistence.Registers;
 

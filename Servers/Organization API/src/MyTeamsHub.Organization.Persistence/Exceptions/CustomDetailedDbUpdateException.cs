@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 
-namespace MyTeamsHub.Persistence.Core.Exceptions;
+namespace MyTeamsHub.Organization.Persistence.Exceptions;
+
 
 [Serializable]
 public class CustomDetailedDbUpdateException : Exception, ISerializable

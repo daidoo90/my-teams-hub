@@ -3,6 +3,7 @@
 using MyTeamsHub.Core.Domain.Organizations;
 using MyTeamsHub.Organization.API.Controllers;
 using MyTeamsHub.Organization.API.Models.V1.Users;
+using MyTeamsHub.Organization.Persistence;
 using MyTeamsHub.SignalR.Users.Hub;
 
 using NetArchTest.Rules;
@@ -44,7 +45,7 @@ public class DependenciesTests
     public void Domain_Should_Not_Depend_On_Persistance_Infrastructure()
     {
         var domainAssembly = typeof(OrganizationEntity).Assembly;
-        var infrastructurePersistenceAssembly = typeof(Persistence.DependencyInjection).Assembly;
+        var infrastructurePersistenceAssembly = typeof(DependencyInjection).Assembly;
 
         var result = Types
             .InAssembly(domainAssembly)
@@ -135,7 +136,7 @@ public class DependenciesTests
     public void Application_Should_Not_Depend_On_Persistance_Infrastructure()
     {
         var applicationAssembly = typeof(Core.Application.DependencyInjection).Assembly;
-        var infrastructurePersistenceAssembly = typeof(Persistence.DependencyInjection).Assembly;
+        var infrastructurePersistenceAssembly = typeof(DependencyInjection).Assembly;
 
         var result = Types
             .InAssembly(applicationAssembly)
