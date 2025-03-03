@@ -2,7 +2,12 @@ using MyTeamsHub.Yarp.Gateway.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddReverseProxy()
+builder.Services
+    .AddOutputCache(options =>
+    {
+        options.AddPolicy("default-cache-policy", builder => builder.Expire(TimeSpan.FromSeconds(20)));
+    })
+    .AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 builder.Services
@@ -15,7 +20,8 @@ var app = builder.Build();
 
 app
     .UseRateLimiter()
-    .UseRequestTimeouts();
+    .UseRequestTimeouts()
+    .UseOutputCache();
 
 app.MapHealthChecks("/proxy-health");
 
