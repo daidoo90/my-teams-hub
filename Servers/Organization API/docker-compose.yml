@@ -90,4 +90,5 @@ services:
 
 networks:
   myteamshub-network:
+    name: myteamshub-network
     driver: bridge

@@ -1,0 +1,13 @@
+services:
+  myteamshub.yarp.gateway.api:
+    image: ${DOCKER_REGISTRY-}myteamshubyarpgatewayapi
+    container_name: myteamshub.yarp.gateway.api
+    build:
+      context: .
+      dockerfile: src/MyTeamsHub.Yarp.Gateway.API/Dockerfile
+    networks:
+     - myteamshub-network
+networks:
+  myteamshub-network:
+    external: true  # Reuse the existing network
+  
