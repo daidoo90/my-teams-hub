@@ -8,13 +8,16 @@ builder.Services.AddReverseProxy()
 builder.Services
     .AddDefaultRateLimiterPolicy()
     .AddDefaultTimeoutPolicy()
-    .AddDefaultHealthCheckOptions(builder.Configuration);
+    .AddDefaultHealthCheckOptions(builder.Configuration)
+    .AddHealthChecks();
 
 var app = builder.Build();
 
-app.UseRateLimiter();
+app
+    .UseRateLimiter()
+    .UseRequestTimeouts();
 
-app.UseRequestTimeouts();
+app.MapHealthChecks("/proxy-health");
 
 app.MapReverseProxy();
 
