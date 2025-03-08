@@ -47,6 +47,10 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Nomenclatures", new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build());
+
+    options.AddPolicy("ApiKey", new AuthorizationPolicyBuilder()
+        .RequireClaim("ApiKey", "external")
+        .Build());
 });
 
 var app = builder.Build();
@@ -59,7 +63,8 @@ app.MapGet("login", () =>
     var claims = new List<Claim>
     {
         new Claim(JwtRegisteredClaimNames.Sub, Guid.NewGuid().ToString()),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim("ApiKey", "external")
     };
 
     var token = new JwtSecurityToken(
