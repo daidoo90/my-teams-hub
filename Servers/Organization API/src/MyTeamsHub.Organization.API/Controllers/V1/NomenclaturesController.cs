@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Organization.API.Models.Common;
@@ -11,7 +10,6 @@ namespace MyTeamsHub.Organization.API.Controllers.V1;
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/nomenclatures")]
-[Authorize]
 public class NomenclaturesController : BaseApiController
 {
     /// <summary>

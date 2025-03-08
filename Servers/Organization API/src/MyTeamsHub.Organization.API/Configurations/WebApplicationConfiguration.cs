@@ -9,9 +9,9 @@ internal static class WebApplicationConfiguration
     {
         app
             .UseCors("AllowSpecificOrigin")
-            .UseRouting()
-            .UseAuthentication()
-            .UseAuthorization();
+            .UseRouting();
+        //.UseAuthentication()
+        //.UseAuthorization();
 
         app.ConfigureSwagger();
 

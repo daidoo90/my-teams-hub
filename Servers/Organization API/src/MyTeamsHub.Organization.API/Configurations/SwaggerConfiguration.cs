@@ -1,9 +1,6 @@
 ﻿using System.Reflection;
-using System.Text;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.Filters;
@@ -16,29 +13,29 @@ internal static class SwaggerConfiguration
 
     internal static IServiceCollection AddSwagger(this IServiceCollection services)
     {
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = "My Teams Hub Issuer",// Configuration["Jwt:Issuer"],
-                ValidAudience = "My Teams Hub Audience", //Configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("at Microsoft.IdentityModel.Tokens.SymmetricSignatureProvider..ctor(SecurityKey key, String algorithm, Boolean willCreateSignatures)"))//Configuration["Jwt:Key"]))
-            };
-        });
+        //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        //.AddJwtBearer(options =>
+        //{
+        //    options.TokenValidationParameters = new TokenValidationParameters
+        //    {
+        //        ValidateIssuer = true,
+        //        ValidateAudience = true,
+        //        ValidateLifetime = true,
+        //        ValidateIssuerSigningKey = true,
+        //        ValidIssuer = "My Teams Hub Issuer",// Configuration["Jwt:Issuer"],
+        //        ValidAudience = "My Teams Hub Audience", //Configuration["Jwt:Audience"],
+        //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("at Microsoft.IdentityModel.Tokens.SymmetricSignatureProvider..ctor(SecurityKey key, String algorithm, Boolean willCreateSignatures)"))//Configuration["Jwt:Key"]))
+        //    };
+        //});
 
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("Bearer", policy =>
-            {
-                policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
-                policy.RequireAuthenticatedUser();
-            });
-        });
+        //services.AddAuthorization(options =>
+        //{
+        //    options.AddPolicy("Bearer", policy =>
+        //    {
+        //        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
+        //        policy.RequireAuthenticatedUser();
+        //    });
+        //});
 
         return services
             .AddSwaggerGen(c =>
