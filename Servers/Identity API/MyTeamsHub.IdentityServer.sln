@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeamsHub.IdentityServer.API", "src\MyTeamsHub.IdentityServer.API\MyTeamsHub.IdentityServer.API.csproj", "{F00AE127-1794-4FB4-B94D-FE5F4D9F36E4}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{293598DD-3DEC-4FAF-BD91-8C2799EF4922}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F00AE127-1794-4FB4-B94D-FE5F4D9F36E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00AE127-1794-4FB4-B94D-FE5F4D9F36E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00AE127-1794-4FB4-B94D-FE5F4D9F36E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00AE127-1794-4FB4-B94D-FE5F4D9F36E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293598DD-3DEC-4FAF-BD91-8C2799EF4922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293598DD-3DEC-4FAF-BD91-8C2799EF4922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293598DD-3DEC-4FAF-BD91-8C2799EF4922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293598DD-3DEC-4FAF-BD91-8C2799EF4922}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
