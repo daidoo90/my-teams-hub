@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddOutputCache(options =>
     {
-        options.AddPolicy("default-cache-policy", builder => builder.Expire(TimeSpan.FromSeconds(20)));
+        options.AddPolicy("default-cache-policy", builder =>
+        {
+            builder.Expire(TimeSpan.FromSeconds(20));
+
+        });
     })
     .AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
@@ -49,13 +53,11 @@ var app = builder.Build();
 app
     .UseRateLimiter()
     .UseRequestTimeouts()
-    .UseOutputCache();
+    .UseOutputCache()
+    .UseAuthentication()
+    .UseAuthorization();
 
 app.MapHealthChecks("/proxy-health");
-
-app.UseAuthentication();
-
-app.UseAuthorization();
 
 app.MapReverseProxy();
 
