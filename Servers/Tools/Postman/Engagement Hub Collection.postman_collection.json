@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "0067b5dd-6bf6-408a-9627-ee62e97f8246",
+		"name": "Engagement Hub Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42528199"
+	},
+	"item": [
+		{
+			"name": "Access Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{ClientId}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{ClientSecret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:62034/auth/realms/{{Realm}}/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "62034",
+					"path": [
+						"auth",
+						"realms",
+						"{{Realm}}",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:62034/auth/realms/{{Realm}}/refresh",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "62034",
+					"path": [
+						"auth",
+						"realms",
+						"{{Realm}}",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organizations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:62034/organizations",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "62034",
+					"path": [
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJvMXl4d09aVEQzRWlTMlZqbGM4Y2l2eHdZZF9FU3ZibXRXWjJFSWhBX3g0In0.eyJleHAiOjE3NDIzMzU1NjcsImlhdCI6MTc0MjMzNTI2NywianRpIjoiNGRmZDQ0OGMtZjUzNi00M2IwLTk0MjMtNWQ0NjdhYjMwNmM3IiwiaXNzIjoiaHR0cDovL2lkZW50aXR5LXNlcnZlci1rZXljbG9hazo4MDgwL3JlYWxtcy9teS10ZWFtcy1odWIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYmJlOTE2OGYtMmI4Yi00YjEyLWI5OTUtOTdlZGQ4NGYxM2JlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2VydmljZS1jbGllbnQiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtbXktdGVhbXMtaHViIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJjbGllbnRIb3N0IjoiMTcyLjIyLjAuOCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNlcnZpY2UtY2xpZW50IiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yMi4wLjgiLCJjbGllbnRfaWQiOiJzZXJ2aWNlLWNsaWVudCJ9.fzchDT_O8P8yWqHMuP7YA5LStTrJIq6pmh6d5_fT5tN4bZkjONGDXRIcmamYbEva2VbXBHTwoQDDedFcfIGQehhWCpjjRhbptJ0nx8YynELdbXqDdVQzDetTSHO6gRLyiYzqU35x7byJ0SzFP4Y_0sCfW2Y9zpWZP2lzV7pNntNW_GohXSAt8rZOm6gcEenoGjW2TWzlUwVN4csGek6JxE8zO8NCjRm8MSO7eRXWPjGqX5xqO2WzISVlRrZxq39DPrtej_e_4EgPeA1dHD0UfEkOMRONLyAuWPTt9Aa76uJlmrzmLRNwdkzdAUbde3E4QgL9RpX9yDHYKvHZ-tmDug",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:62034/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "62034",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "Realm",
+			"value": "my-teams-hub",
+			"type": "default"
+		}
+	]
+}
