@@ -17,4 +17,6 @@ public record User
     public int Status { get; init; }
 
     public int UserType { get; init; }
+
+    public string Password { get; set; }
 }

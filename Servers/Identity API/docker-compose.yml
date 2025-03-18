@@ -1,5 +1,4 @@
 services:
-
   myteamshub.identityserver.api:
     container_name: myteamshub.identityserver.api
     image: ${DOCKER_REGISTRY-}myteamshubidentityserverapi
@@ -8,3 +7,21 @@ services:
       dockerfile: src/MyTeamsHub.IdentityServer.API/Dockerfile
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
+
+  identity-server-keycloak:
+    container_name: identity-server-keycloak
+    image: quay.io/keycloak/keycloak:latest
+    command: start-dev
+    environment:
+        - KC_HEALTH_ENABLED=true
+        - KEYCLOAK_ADMIN=admin
+        - KEYCLOAK_ADMIN_PASSWORD=admin
+    volumes:
+      - ./.temp/identity:/opt/keycloak/data
+    ports:
+        - 18080:8080
+    networks:
+      - myteamshub-network
+networks:
+  myteamshub-network:
+    external: true  # Reuse the existing network

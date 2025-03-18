@@ -9,12 +9,9 @@ public class UserService : IUserService
     private readonly ICryptoService _cryptoService;
     private readonly IdentityDbContext _dbContext;
 
-    public UserService(
-        ICryptoService cryptoService
-        , IdentityDbContext dbContext)
+    public UserService(ICryptoService cryptoService)
     {
         _cryptoService = cryptoService;
-        _dbContext = dbContext;
     }
 
     public async Task<Guid> CreateAsync(UserSignupRequestDto request, CancellationToken cancellationToken)
