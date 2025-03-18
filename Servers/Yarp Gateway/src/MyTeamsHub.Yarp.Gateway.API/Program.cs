@@ -2,9 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using MyTeamsHub.Yarp.Gateway.API.Extensions;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,53 +29,22 @@ builder.Services
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "My Teams Hub Issuer",// Configuration["Jwt:Issuer"],
-            ValidAudience = "My Teams Hub Audience", //Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("at Microsoft.IdentityModel.Tokens.SymmetricSignatureProvider..ctor(SecurityKey key, String algorithm, Boolean willCreateSignatures)"))//Configuration["Jwt:Key"]))
+            ValidIssuer = "http://identity-server-keycloak:8080/realms/my-teams-hub",// Configuration["Jwt:Issuer"],
+            ValidAudience = "account", //Configuration["Jwt:Audience"],
         };
+
+        options.Authority = "http://identity-server-keycloak:8080/realms/my-teams-hub";
+        options.RequireHttpsMetadata = false;
     });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AuthenticatedOnly", new AuthorizationPolicyBuilder()
+builder
+    .Services
+    .AddAuthorizationBuilder()
+    .AddPolicy("AuthenticatedOnly", new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build());
-
-    options.AddPolicy("Nomenclatures", new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build());
-
-    options.AddPolicy("ApiKey", new AuthorizationPolicyBuilder()
-        .RequireClaim("ApiKey", "ExternalAPI")
-        .Build());
-});
 
 var app = builder.Build();
-
-app.MapGet("login", () =>
-{
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("at Microsoft.IdentityModel.Tokens.SymmetricSignatureProvider..ctor(SecurityKey key, String algorithm, Boolean willCreateSignatures)"));
-    var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-    var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.Sub, Guid.NewGuid().ToString()),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim("ApiKey", "ExternalAPI"),
-    };
-
-    var token = new JwtSecurityToken(
-        issuer: "My Teams Hub Issuer",
-        audience: "My Teams Hub Audience",
-        claims: claims,
-        expires: DateTime.UtcNow.AddHours(1),
-        signingCredentials: credentials
-    );
-
-    var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-    return Results.Ok(new { token = tokenString });
-});
 
 app
     .UseRateLimiter()

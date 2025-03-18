@@ -364,3 +364,7 @@ FodyWeavers.xsd
 
 # Ignoring Volumes from PostgreSQL
 /Servers/Organization API/infra/postgresql/temp_pg_data
+
+# Ignoring Volumes from Keycloak
+/Servers/Identity API/.temp
+/Servers/Identity API/src/MyTeamsHub.IdentityServer.API/keys
