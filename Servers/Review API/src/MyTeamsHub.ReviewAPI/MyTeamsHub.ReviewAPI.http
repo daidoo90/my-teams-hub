@@ -1,0 +1,6 @@
+@MyTeamsHub.ReviewAPI_HostAddress = http://localhost:5273
+
+GET {{MyTeamsHub.ReviewAPI_HostAddress}}/reviews/
+Accept: application/json
+
+###

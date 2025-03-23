@@ -1,0 +1,43 @@
+services:
+  myteamshub.reviewapi:
+    image: ${DOCKER_REGISTRY-}myteamshubreviewapi
+    container_name: myteamshub.reviewapi
+    restart: always
+    depends_on:
+        - myteamshub.mongodb
+    build:
+      context: .
+      dockerfile: src/MyTeamsHub.ReviewAPI/Dockerfile
+    networks:
+        - myteamshub-network
+
+  myteamshub.mongodb:
+    image: mongo:latest
+    container_name: myteamshub.mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+        - myteamshub-network
+    volumes:
+      - ./infra/mongodb:/data/db
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    networks:
+        - myteamshub-network
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_URL: mongodb://admin:admin@myteamshub.mongodb:27017/?authSource=admin
+
+networks:
+  myteamshub-network:
+    external: true
