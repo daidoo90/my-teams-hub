@@ -69,7 +69,7 @@ internal static class SwaggerConfiguration
                     }
                 });
 
-                string filePath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetEntryAssembly()?.GetName().Name}.xml");
+                string filePath = System.IO.Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetEntryAssembly()?.GetName().Name}.xml");
                 c.IncludeXmlComments(filePath);
                 c.CustomSchemaIds(type => type.ToString());
             })

@@ -6,6 +6,8 @@
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageVersion Include="FluentAssertions" Version="7.2.0" />
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="15.1.0" />
+    <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="15.1.0" />
     <PackageVersion Include="MassTransit" Version="8.3.6" />
     <PackageVersion Include="MassTransit.Newtonsoft" Version="8.3.6" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.6" />

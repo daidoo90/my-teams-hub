@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using MyTeamsHub.Core.Application;
 using MyTeamsHub.Infrastructure;
 using MyTeamsHub.Organization.API.Services;
+using MyTeamsHub.Organization.API.Services.Organization;
 using MyTeamsHub.Organization.Notifications;
 using MyTeamsHub.Organization.Persistence;
 using MyTeamsHub.Persistence.Registers;
@@ -23,6 +24,12 @@ internal static class ApiConfiguration
             .AddPersistanceInfrastructure()
             .AddHealthChecks()
             .AddSqlServer(builder.Configuration.GetDatabaseConnectionString());
+
+        builder.Services
+            .AddGraphQLServer()
+            .AddQueryType<OrganizationQuery>()
+            .AddFiltering()
+            .AddSorting();
 
         return builder;
     }

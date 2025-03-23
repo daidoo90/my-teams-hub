@@ -23,6 +23,8 @@ internal static class WebApplicationConfiguration
 
         app.MapHub<UserNotificationHub>("/users-notifications");
 
+        app.MapGraphQL();
+
         return app;
     }
 }

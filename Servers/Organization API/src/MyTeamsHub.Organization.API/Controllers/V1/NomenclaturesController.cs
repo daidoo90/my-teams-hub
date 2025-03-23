@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using MyTeamsHub.Core.Application.Common;
 using MyTeamsHub.Organization.API.Models.Common;
 
 namespace MyTeamsHub.Organization.API.Controllers.V1;
@@ -19,8 +18,8 @@ public class NomenclaturesController : BaseApiController
     [Route("codes")]
     public IActionResult GetCodesAsync(CancellationToken cancellationToken)
     {
-        var instance = Activator.CreateInstance<ErrorCodes>();
-        var codes = typeof(ErrorCodes).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+        var instance = Activator.CreateInstance<MyTeamsHub.Core.Application.Common.ErrorCodes>();
+        var codes = typeof(MyTeamsHub.Core.Application.Common.ErrorCodes).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 
         var codeValues = codes.Select(c => c.GetValue(instance));
 
