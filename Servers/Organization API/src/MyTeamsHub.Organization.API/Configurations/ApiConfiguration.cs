@@ -28,6 +28,8 @@ internal static class ApiConfiguration
         builder.Services
             .AddGraphQLServer()
             .AddQueryType<OrganizationQuery>()
+            .AddType<OrganizationType>()
+            .AddType<TeamType>()
             .AddFiltering()
             .AddSorting();
 
